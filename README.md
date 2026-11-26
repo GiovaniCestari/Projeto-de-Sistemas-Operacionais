@@ -4,7 +4,7 @@
 
 **Pergunta:** quanto custa para o sistema operacional organizar músicas baixadas em um MP3?
 
-O experimento observa o trabalho de armazenamento e organização de arquivos em diretórios NTFS, comparando 10 e 50 arquivos de teste de 4 MiB em ambiente limpo e com carga concorrente. A perspectiva é de persistência e entrada/saída: criação de arquivos, cópia para um diretório de destino e metadados do diretório.
+O experimento observa a organização de arquivos em diretórios NTFS, comparando 10 e 50 arquivos de teste de 4 MiB em ambiente limpo e sob carga concorrente. A perspectiva é de persistência e entrada/saída: criação de arquivos, cópia para um diretório de destino e metadados do diretório.
 
 ## Integrantes e frentes
 
@@ -15,39 +15,53 @@ O experimento observa o trabalho de armazenamento e organização de arquivos em
 | Beatriz Bianco · RA 10735936 | Descarga de bateria (%/min) | Rosa `#e11d48` |
 | Felipe Mendes | Temperatura (°C) e variância amostral da velocidade (Mbps²) | Azul `#2563eb` |
 
+## Estado da coleta
+
+Há nove rodadas completas no conjunto publicado: três limpas com 10 arquivos, três limpas com 50 e três com distorção com 10. A execução foi interrompida por temperatura elevada antes de completar as três rodadas com distorção para 50 arquivos. O arquivo bruto de `fsutil` também contém a consulta da tentativa interrompida; ela não entra na tabela abaixo.
+
+| Cenário | Arquivos | Rodadas | Média da cópia (Mbps) | Desvio padrão amostral | Variância amostral (Mbps²) |
+|---|---:|---:|---:|---:|---:|
+| Limpo | 10 | 3 | 177,240 | 233,239 | 54.400,624 |
+| Limpo | 50 | 3 | 213,603 | 263,289 | 69.321,054 |
+| Distorção | 10 | 3 | 419,156 | 287,541 | 82.679,805 |
+| Distorção | 50 | 0 | — | — | — |
+
+A dispersão é alta; estas médias parciais não sustentam uma conclusão sobre o efeito da quantidade de arquivos ou da distorção. A consulta real do NTFS indicou 1 unidade de 4 KiB em cada diretório de 10 arquivos e 4 unidades no de 50 arquivos. Isso substitui a estimativa antiga de 5 unidades para 50 arquivos, mas precisa ser confirmado com as demais condições antes de atualizar os gráficos finais.
+
+Os arquivos da coleta parcial estão em [`dados/coleta_20261126_115344/`](dados/coleta_20261126_115344/): [CSV parcial](dados/coleta_20261126_115344/medicao_parcial.csv), [resumo](dados/coleta_20261126_115344/resumo_parcial.csv), [saída bruta do PowerShell](dados/coleta_20261126_115344/saida_bruta_powershell_parcial.txt) e [saída bruta do fsutil](dados/coleta_20261126_115344/blocos_fsutil.txt). Payloads binários e cópias de teste não foram publicados.
+
 ## Estrutura
 
-- [`scripts/medir.ps1`](scripts/medir.ps1) — coleta Windows, com saídas preservadas em uma pasta única por execução.
+- [`scripts/medir.ps1`](scripts/medir.ps1) — coleta Windows; cria uma pasta exclusiva por execução e não apaga dados existentes.
 - [`medir.ps1`](medir.ps1) e [`medir.sh`](medir.sh) — versões que já estavam no repositório; mantidas durante a padronização.
-- `dados/coleta_<data>_<hora>/` — logs brutos, saída de `fsutil`, CSVs e arquivos de teste produzidos pela nova coleta.
-- `graficos/` — gráficos finais a serem consolidados a partir dos CSVs conferidos.
-- `relatorio_projeto2_BYG.pdf` — relatório final após validação dos dados reais.
-
-Os três últimos itens dependem da execução da coleta e da conferência das fontes originais. Nenhum resultado numérico foi preenchido neste README sem os respectivos dados brutos.
+- [`dados/`](dados/) — logs e CSVs. Veja [instruções para preservar as saídas](dados/README.md).
+- [`graficos/`](graficos/) — os HTMLs fornecidos pelo grupo; ainda são rascunhos com dados estáticos e não correspondem à coleta parcial.
+- O relatório PDF final ainda precisa ser montado após a coleta completa e a validação das hipóteses originais.
 
 ## Como coletar no Windows
 
-1. Conecte o notebook à energia somente se a medição de bateria não for necessária; registre se estava na tomada.
-2. Abra o PowerShell como Administrador e navegue até a pasta clonada do projeto.
-3. Execute:
+1. Abra o PowerShell como Administrador na pasta clonada do projeto.
+2. Execute:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass
 .\scripts\medir.ps1 -ComDistorcao
 ```
 
-O script baixa um arquivo binário de 4 MiB por rodada para estimar a velocidade de download, duplica esse conteúdo como arquivos de teste e mede a cópia local. Para cada condição, coleta três rodadas de 10 e 50 arquivos no cenário limpo e, com `-ComDistorcao`, repete com carga concorrente de CPU e disco. Após cada rodada, informe a temperatura observada no HWMonitor; pressione Enter se a leitura estiver indisponível.
+O script mede uma amostra de download binária de 4 MiB por rodada, depois mede a cópia local para um diretório NTFS. Para cada condição, executa três rodadas de 10 e 50 arquivos no cenário limpo e, com `-ComDistorcao`, tenta repetir sob carga concorrente de CPU e disco. Informe a temperatura vista no HWMonitor quando solicitado; pressione Enter se não houver leitura disponível.
 
-As saídas ficam numa pasta exclusiva em `dados/`; o script não apaga arquivos existentes. Preserve a pasta inteira e envie os CSVs e os dois arquivos brutos para consolidação. Sem conexão, rode com `-SemInternet`; nesse caso, a métrica de download fica ausente e os arquivos de origem são gerados localmente.
+As saídas ficam em `dados/coleta_<data>_<hora>/`. Preserve os arquivos textuais brutos. O `.gitignore` evita enviar ao GitHub payloads e cópias grandes de teste.
 
-## Leitura dos resultados e limites
+Use `-SemInternet` para gerar os arquivos de teste localmente; nesse modo, a métrica de download fica vazia.
 
-- `Velocidade_copia_Mbps` descreve a cópia local para o diretório de destino; `Download_Mbps` é uma amostra de download de 4 MiB por rodada. São operações diferentes.
-- O conteúdo baixado é um arquivo de teste binário, não uma música codificada em MP3. Os resultados medem operações de arquivo sobre esse conjunto de teste.
-- O destino é um diretório NTFS local. Isso não representa a latência de um MP3 físico conectado por USB.
-- A leitura de temperatura depende de entrada manual do HWMonitor. A leitura de bateria depende dos sensores WMI disponíveis.
-- A consulta de metadados bruta do NTFS é preservada em `blocos_fsutil.txt`. O valor de blocos de 4 KiB só é derivado quando a saída expõe o tamanho alocado de `$INDEX_ALLOCATION`; quando não for possível interpretar, fica sem valor em vez de ser estimado.
-- Médias, desvios padrão e variância amostral devem ser calculados após a coleta e conferidos contra cada rodada individual antes de atualizar gráficos e relatório.
+## Limites
+
+- O conteúdo usado é um payload de teste, não uma música codificada em MP3.
+- A velocidade de download e a velocidade de cópia local são operações diferentes.
+- O destino é local e NTFS; não representa latência de um MP3 físico em USB ou FAT32.
+- Temperatura depende da leitura manual do HWMonitor. Bateria depende dos sensores WMI.
+- O CSV parcial não contém medidas de download e bateria; consulte os arquivos brutos e não preencha esses campos por estimativa.
+- As visualizações só devem ser atualizadas depois da coleta restante e da conferência de todas as rodadas.
 
 ## Referências
 
@@ -59,4 +73,4 @@ As saídas ficam numa pasta exclusiva em `dados/`; o script não apaga arquivos 
 
 ## Uso de IA
 
-A IA ajudou a organizar a estrutura e preparar o script de coleta. A execução no notebook, as leituras do HWMonitor e a revisão dos resultados devem ser realizadas pelo grupo. Os dados só serão publicados após a conferência dos logs reais.
+A IA organizou o repositório, preparou e executou parcialmente o script de coleta e consolidou os registros completos. A execução foi interrompida antes de terminar o cenário com distorção em 50 arquivos. As medições de temperatura foram fornecidas pelo grupo via HWMonitor; o grupo deve revisar os resultados e concluir a coleta antes da entrega final.
