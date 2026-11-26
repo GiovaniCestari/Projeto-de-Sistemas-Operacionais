@@ -145,21 +145,21 @@ a { color: #155b83; text-decoration: none; }
 </section>
 <section class="section break">
   <h3>4.3 N=50 sob carga concorrente, após resfriamento</h3>
-  <p>Depois de deixar o notebook resfriar, foram concluídas três cópias de 50 arquivos com a mesma rotina concorrente de CPU e gravações de 1 MiB. Os valores de temperatura abaixo foram lidos no HWMonitor logo após cada cópia; o pico durante a execução não foi monitorado automaticamente.</p>
+  <p>Depois de deixar o notebook resfriar, foram concluídas três cópias de 50 arquivos com a mesma rotina concorrente de CPU e gravações de 1 MiB. As leituras de temperatura foram feitas no HWMonitor logo após cada cópia; o pico durante a execução não foi monitorado automaticamente.</p>
   <table>
-    <thead><tr><th>Rodada</th><th class="num">Cópia (s)</th><th class="num">Cópia (Mbps)</th><th class="num">CPU do processo (s)</th><th class="num">CPU Package após (°C)</th><th>fsutil</th></tr></thead>
+    <thead><tr><th>Rodada</th><th class="num">Cópia (s)</th><th class="num">Cópia (Mbps)</th><th class="num">CPU processo (s)</th><th class="num">CPU Package após (°C)</th><th class="num">Blocos / índice alocado</th><th class="num">Extensões</th></tr></thead>
     <tbody>
-      <tr><td>1</td><td class="num">14,559</td><td class="num">115,236</td><td class="num">1,031</td><td class="num">50</td><td>Acesso negado</td></tr>
-      <tr><td>2</td><td class="num">47,058</td><td class="num">35,653</td><td class="num">1,000</td><td class="num">53</td><td>Acesso negado</td></tr>
-      <tr><td>3</td><td class="num">69,840</td><td class="num">24,022</td><td class="num">0,984</td><td class="num">51</td><td>Acesso negado</td></tr>
-      <tr><td><strong>Média (n=3)</strong></td><td class="num">43,819</td><td class="num">58,304</td><td class="num">1,005</td><td class="num">51,3</td><td>Não medido</td></tr>
+      <tr><td>1</td><td class="num">14,559</td><td class="num">115,236</td><td class="num">1,031</td><td class="num">50</td><td class="num">4 / 16.384 B</td><td class="num">1</td></tr>
+      <tr><td>2</td><td class="num">47,058</td><td class="num">35,653</td><td class="num">1,000</td><td class="num">53</td><td class="num">4 / 16.384 B</td><td class="num">2</td></tr>
+      <tr><td>3</td><td class="num">69,840</td><td class="num">24,022</td><td class="num">0,984</td><td class="num">51</td><td class="num">4 / 16.384 B</td><td class="num">1</td></tr>
+      <tr><td><strong>Média (n=3)</strong></td><td class="num">43,819</td><td class="num">58,304</td><td class="num">1,005</td><td class="num">51,3</td><td class="num">4 / 16.384 B</td><td class="num">—</td></tr>
     </tbody>
   </table>
-  <p class="small">A variação amostral da taxa de cópia foi alta: desvio padrão 49,647 Mbps e variância 2.464,788 Mbps². O arquivo <code>dados/coleta_n50_distorcao_20261126/medicao.csv</code> reúne as três linhas. Não foi possível consultar o índice do diretório com <code>fsutil</code> nesta sessão sem elevação.</p>
+  <p class="small">A variação amostral da taxa de cópia foi alta: desvio padrão 49,647 Mbps e variância 2.464,788 Mbps². As três consultas administrativas confirmaram `$I30:$INDEX_ALLOCATION` de 16.384 bytes em cada destino; o número de extensões foi 1, 2 e 1. O resumo das três consultas está em <code>dados/coleta_n50_distorcao_20261126/blocos_fsutil.txt</code>.</p>
 </section>
 <section class="section">
   <h2>5. Discussão</h2>
-  <p><strong>H1 — direção compatível:</strong> a ficha registra 1 bloco em N=10 e 5 em N=50, estimados pela quantidade de entradas. A consulta direta em NTFS, no cenário limpo, encontrou 1 e 4 unidades de 4 KiB. O fsutil das novas rodadas N=50 sob carga retornou acesso negado; não há leitura direta dessa condição.</p>
+  <p><strong>H1 — direção compatível:</strong> a ficha registra 1 bloco em N=10 e 5 em N=50, estimados pela quantidade de entradas. A consulta direta em NTFS, no cenário limpo, encontrou 1 e 4 unidades de 4 KiB. O fsutil das novas rodadas sob carga encontrou 4 unidades de 4 KiB em cada destino, apoiando a direção prevista. A estimativa da ficha (5 blocos) é próxima, mas não idêntica à leitura direta (4).</p>
   <p><strong>H2 — praticamente estável nesta amostra:</strong> a média de download foi 28,83 Mbps em N=10 e 30,10 Mbps em N=50 (+4,4%). O resultado não mostra a pequena queda esperada, mas a diferença é modesta perante a variação das três rodadas.</p>
   <p><strong>H3 — direção compatível, sem evidência forte:</strong> a descarga média passou de 0,536 para 0,550% por minuto. A diferença é pequena em relação à dispersão entre medições; não permite afirmar que N=50 consuma mais bateria por minuto.</p>
   <p><strong>H4 — direção compatível:</strong> a temperatura média anotada na ficha foi de 27,7 °C para 30,3 °C. Foram só três leituras por condição e a temperatura foi registrada manualmente.</p>
@@ -171,7 +171,7 @@ a { color: #155b83; text-decoration: none; }
 <section class="section break">
   <h2>6. Limites</h2>
   <ul>
-    <li>As três rodadas N=50 sob carga têm apenas temperaturas pós-cópia, não pico contínuo; fsutil retornou acesso negado nessa sessão.</li>
+    <li>As três rodadas N=50 sob carga têm apenas temperaturas pós-cópia, não pico contínuo.</li>
     <li>Download e bateria constam na ficha da primeira medição; não constam na coleta complementar local de 26/11. Os conjuntos são apresentados separadamente.</li>
     <li>A temperatura foi inserida manualmente após as rodadas; não há telemetria contínua.</li>
     <li>O payload binário de 4 MiB não é áudio MP3 e foi duplicado localmente; o experimento não mede download de 10 ou 50 músicas distintas.</li>

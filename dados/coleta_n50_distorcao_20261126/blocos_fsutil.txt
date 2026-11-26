@@ -1,2 +1,9 @@
-Três consultas a fsutil file layout sobre os diretórios de destino retornaram: Erro 5: Acesso negado.
-Metadados do diretório não medidos nesta coleta.
+Consulta administrativa executada após as três cópias, em PowerShell elevado.
+Todos os destinos: $I30:$INDEX_ALLOCATION com tamanho alocado de 16.384 bytes (4 unidades de 4 KiB).
+
+Destino N=50 distorção r1 (coleta_n50_distorcao_20261126_124453): 16.384 bytes; 4 blocos; 1 extensão.
+Destino N=50 distorção r2 (coleta_n50_distorcao_20261126_124641): 16.384 bytes; 4 blocos; 2 extensões.
+Destino N=50 distorção r3 (coleta_n50_distorcao_20261126_124809): 16.384 bytes; 4 blocos; 1 extensão.
+
+$I30:$INDEX_ROOT residente: 416 bytes em cada destino.
+Fonte: saída de fsutil file layout enviada pelo usuário em 26/11/2026.

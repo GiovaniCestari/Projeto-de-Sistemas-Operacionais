@@ -6,4 +6,4 @@ Arquivos de teste são intermediários e podem ser grandes. Para publicar no Git
 
 ## Coleta adicional N=50 sob distorção
 
-Os três registros de 26/11/2026 estão em [`coleta_n50_distorcao_20261126/`](coleta_n50_distorcao_20261126/). Eles usam arquivos-fonte já existentes e registram cópia local, taxa de cópia, temperatura CPU Package após cada rodada e o resultado de `fsutil` (acesso negado). As leituras de temperatura não representam o pico contínuo da execução. Payloads temporários de carga não foram publicados.
+Os três registros de 26/11/2026 estão em [`coleta_n50_distorcao_20261126/`](coleta_n50_distorcao_20261126/). Eles usam arquivos-fonte já existentes e registram cópia local, taxa de cópia, temperatura CPU Package após cada rodada e o resultado de `fsutil` (`$INDEX_ALLOCATION` com 16.384 bytes, 4 blocos de 4 KiB em cada rodada). O número de extensões foi 1, 2 e 1. As leituras de temperatura não representam o pico contínuo da execução. Payloads temporários de carga não foram publicados.

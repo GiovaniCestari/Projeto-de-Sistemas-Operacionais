@@ -26,7 +26,7 @@ Há 12 rodadas completas na coleta complementar: três limpas com 10 arquivos, t
 | Distorção | 10 | 3 | 419,156 | 287,541 | 82.679,805 |
 | Distorção | 50 | 3 | 58,304 | 49,647 | 2.464,788 |
 
-A dispersão das taxas de cópia é alta, sobretudo sob distorção. Na coleta direta com fsutil anterior, o NTFS indicou 1 unidade de 4 KiB para N=10 e 4 para N=50. A ficha da Bia registra 1 e 5 blocos, mapeados pela quantidade de entradas. Na coleta nova com distorção, fsutil retornou acesso negado; mantemos cada resultado identificado pela fonte e método.
+A dispersão das taxas de cópia é alta, sobretudo sob distorção. Na coleta direta com fsutil, o NTFS indicou 1 unidade de 4 KiB para N=10 e 4 para N=50, tanto no cenário limpo como nas três rodadas N=50 sob carga. A ficha da Bia registra 1 e 5 blocos, mapeados por simulação; mantemos os métodos identificados.
 
 A primeira medição registrada por Beatriz contém download, bateria, temperatura e uso/tempo de CPU para seis rodadas. Download médio: 28,83 Mbps (N=10) e 30,10 Mbps (N=50); descarga média: 0,536%/min e 0,550%/min; tempo de CPU médio: 0,95 s e 4,47 s. Os dados transcritos estão em [`dados/primeira_medicao_bia.csv`](dados/primeira_medicao_bia.csv).
 
