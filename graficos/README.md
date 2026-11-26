@@ -1,5 +1,5 @@
 # Gráficos
 
-Os dois HTMLs desta pasta vieram dos arquivos fornecidos pelo grupo. Eles contêm dados estáticos de seis rodadas (10 e 50 músicas), não são gerados automaticamente a partir dos CSVs.
+Os dois HTMLs desta pasta visualizam os seis registros da primeira medição fornecida por Beatriz. Os valores são os mesmos que estão transcritos em [`../dados/primeira_medicao_bia.csv`](../dados/primeira_medicao_bia.csv); os gráficos são estáticos e não são gerados automaticamente.
 
-Trate-os como versão de referência até reconciliar cada número com as saídas brutas. A coleta nova produz métricas diferentes de cópia local e amostra de download; os gráficos devem ser atualizados antes de serem apresentados como resultado final.
+Eles mostram download, blocos informados na ficha, descarga de bateria e temperatura. A ficha observa que os blocos foram mapeados pela quantidade de entradas e recomenda confirmar com `fsutil`. A coleta complementar de 26/11 mediu cópia local e metadados NTFS diretamente; ela fica em outro conjunto e não está nestes gráficos.

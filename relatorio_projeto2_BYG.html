@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Projeto 2 — Custo de organizar músicas em um MP3 | Grupo BYG</title>
+<style>
+@page { size: A4; margin: 16mm 17mm 17mm; }
+* { box-sizing: border-box; }
+body { margin: 0; color: #17202a; font: 10.2pt/1.42 "Segoe UI", Arial, sans-serif; }
+h1,h2,h3 { line-height: 1.15; margin: 0 0 8pt; }
+h1 { font-size: 26pt; letter-spacing: -.3pt; }
+h2 { font-size: 17pt; color: #12354a; border-bottom: 2px solid #d9e4ea; padding-bottom: 5pt; margin-top: 0; }
+h3 { font-size: 11pt; margin-top: 12pt; color: #263b49; }
+p { margin: 0 0 7pt; }
+ul,ol { margin: 4pt 0 8pt 18pt; padding: 0; }
+li { margin-bottom: 3pt; }
+.cover { height: 254mm; display: flex; flex-direction: column; justify-content: space-between; page-break-after: always; padding: 12mm 4mm 8mm; }
+.eyebrow { text-transform: uppercase; letter-spacing: 2px; color: #467080; font-size: 9pt; font-weight: 700; }
+.title { max-width: 155mm; }
+.subtitle { color: #526774; font-size: 14pt; max-width: 155mm; }
+.hero { border-left: 5px solid #16a34a; padding: 10pt 14pt; background: #f3f8f5; font-size: 12pt; }
+.meta { display: grid; grid-template-columns: 1fr 1fr; gap: 7pt 16pt; font-size: 9.5pt; color: #405461; }
+.band { height: 7px; background: linear-gradient(90deg,#7c3aed 0 25%,#16a34a 25% 50%,#e11d48 50% 75%,#2563eb 75%); }
+.section { margin-bottom: 10pt; }
+.break { break-before: page; page-break-before: always; }
+.note { background: #fff7df; border-left: 4px solid #c78b00; padding: 8pt 10pt; margin: 8pt 0; }
+.danger { background: #fff0ed; border-left: 4px solid #b53a2c; padding: 8pt 10pt; margin: 8pt 0; }
+.small { font-size: 8.3pt; color: #52616b; }
+table { width: 100%; border-collapse: collapse; margin: 7pt 0 10pt; font-size: 8.2pt; }
+th { background: #eaf1f4; text-align: left; color: #233d4c; }
+th,td { border: 1px solid #cbd6dc; padding: 4pt 5pt; vertical-align: top; }
+td.num, th.num { text-align: right; white-space: nowrap; }
+.tag { display: inline-block; padding: 2pt 6pt; background: #eef3f5; border-radius: 8pt; font-size: 8pt; }
+.purple { color:#7c3aed; font-weight:700; } .green{color:#16a34a;font-weight:700;} .pink{color:#e11d48;font-weight:700;} .blue{color:#2563eb;font-weight:700;}
+.footer { margin-top: 9pt; font-size: 7.8pt; color: #687780; border-top: 1px solid #d9e1e5; padding-top: 4pt; }
+a { color: #155b83; text-decoration: none; }
+@media screen { body { max-width: 900px; margin: 24px auto; padding: 0 32px 40px; } .cover { height: auto; min-height: 880px; } .break { margin-top: 40px; border-top: 4px solid #d9e4ea; padding-top: 24px; } }
+</style>
+</head>
+<body>
+<section class="cover">
+  <div class="eyebrow">Universidade Presbiteriana Mackenzie · Sistemas Operacionais · 2026.2</div>
+  <div class="title">
+    <div class="band"></div>
+    <p class="eyebrow" style="margin-top:20pt">Projeto 2 · Custo</p>
+    <h1>Quanto custa para o sistema operacional organizar músicas baixadas em um MP3?</h1>
+    <p class="subtitle">Resultados da primeira medição do grupo e coleta complementar parcial de cópia local em NTFS.</p>
+  </div>
+  <div>
+    <div class="hero"><strong>Resultado observado:</strong> os diretórios medidos alocaram 1 unidade de 4 KiB com 10 arquivos e 4 unidades com 50 arquivos. A amostra de cópia apresentou grande variação entre rodadas; ainda não sustenta uma conclusão causal.</div>
+    <div class="meta" style="margin-top:18pt">
+      <div><strong>Grupo:</strong> BYG · Turma 4P</div>
+      <div><strong>Professores:</strong> Lucas C. Figueiredo e Lia Kassardjian Silva</div>
+      <div><strong>Integrantes:</strong> Laura Yumi Rodrigues Shiguemori, Giovani de Oliveira Cestari (RA 10738542), Beatriz Bianco (RA 10735936), Felipe Mendes</div>
+      <div><strong>Repositório:</strong> <a href="https://github.com/GiovaniCestari/Projeto-de-Sistemas-Operacionais">Projeto-de-Sistemas-Operacionais</a></div>
+    </div>
+  </div>
+  <p class="small">Versão parcial: inclui os seis registros da ficha da Beatriz e nove rodadas complementares de cópia. A coleta com distorção em 50 arquivos foi interrompida ao atingir pico de 91 °C em CPU Package.</p>
+</section>
+
+<section class="section">
+  <h2>1. Pergunta</h2>
+  <p><strong>Pergunta do grupo:</strong> quanto custa para o sistema operacional organizar músicas baixadas em um MP3?</p>
+  <p><strong>X:</strong> quantidade de arquivos de teste no diretório (10 ou 50), cada um com 4 MiB. <strong>Y:</strong> tempo e taxa da cópia local, além das unidades alocadas no índice do diretório. <strong>Z:</strong> carga concorrente de CPU e disco, comparada com execução limpa.</p>
+  <p>O sistema observado foi Windows 11 Pro sobre NTFS em armazenamento local. O enquadramento teórico é persistência e entrada/saída no OSTEP: o sistema operacional recebe operações de abertura, criação, escrita e fechamento, atualiza metadados e mantém o índice do diretório. A consulta foi feita com <code>fsutil file layout</code> sobre o diretório de destino.</p>
+  <div class="note"><strong>Escopo:</strong> o payload baixado é um arquivo binário de teste, duplicado com nomes <code>musica_NNN.mp3</code>. Não é áudio MP3. A medição representa operações de arquivo e cópia local; não simula integralmente firmware, controlador ou latência de um aparelho MP3 USB.</div>
+</section>
+
+<section class="section">
+  <h2>2. Método</h2>
+  <p>Foi usado um notebook com Windows 11 Pro e destino NTFS. Em cada rodada, o script baixou uma amostra binária de 4 MiB do endpoint de teste do Cloudflare, criou cópias locais com os nomes esperados e cronometrizou a cópia dos arquivos para um diretório novo. A escrita de destino usou <em>WriteThrough</em> e <em>Flush</em>.</p>
+  <table>
+    <thead><tr><th>Fator</th><th>Procedimento</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td>Quantidade</td><td>10 e 50 arquivos de 4 MiB; três repetições planejadas por cenário</td><td>10 limpo, 50 limpo e 10 distorcido completos</td></tr>
+      <tr><td>Ambiente limpo</td><td>Cópia serial, sem carga artificial em segundo plano</td><td>6 rodadas completas</td></tr>
+      <tr><td>Distorção</td><td>Laço de CPU e gravações concorrentes de 1 MiB em disco</td><td>3 rodadas completas em N=10; N=50 interrompido</td></tr>
+      <tr><td>Blocos do diretório</td><td>Saída integral de <code>fsutil file layout</code>, incluindo <code>$I30:$INDEX_ALLOCATION</code></td><td>Consulta administrativa disponível</td></tr>
+      <tr><td>Temperatura</td><td>Leitura manual no HWMonitor após cada rodada</td><td>9 valores informados</td></tr>
+      <tr><td>Download / bateria / CPU</td><td>Download de amostra; sensores WMI e process time no script</td><td>Ficha com 6 rodadas; separada da coleta complementar</td></tr>
+    </tbody>
+  </table>
+  <p class="small">O script e as saídas textuais estão no repositório. Os payloads e as cópias temporárias não foram publicados por serem grandes; o script cria pastas únicas e não remove arquivos existentes.</p>
+</section>
+
+<section class="section break">
+  <h2>3. Hipóteses</h2>
+  <div class="note"><strong>Nota de procedência:</strong> a Ficha 3 com as quatro hipóteses originais não estava entre os arquivos acessíveis nesta sessão. As hipóteses abaixo são reconstruções operacionais a partir da pergunta e do método; não devem ser citadas como transcrição da Ficha 3.</div>
+  <table>
+    <thead><tr><th>Hipótese operacional provisória</th><th>Espera</th><th>Por quê / limite</th><th>O que contrariaria</th></tr></thead>
+    <tbody>
+      <tr><td>H1 · Mais arquivos exigem mais índice de diretório.</td><td>O <code>$INDEX_ALLOCATION</code> será maior em N=50 que em N=10.</td><td>Mais entradas podem ultrapassar o espaço residente em <code>$INDEX_ROOT</code>; o tamanho observado depende do NTFS e do volume.</td><td>Alocação igual ou menor em N=50, repetida sob o mesmo sistema de arquivos.</td></tr>
+      <tr><td>H2 · O tempo total cresce com N.</td><td>Copiar 50 arquivos levará mais tempo que copiar 10.</td><td>Há cinco vezes mais arquivos e bytes; cache, antivírus e armazenamento influenciam a execução.</td><td>Tempo igual ou menor em várias rodadas controladas.</td></tr>
+      <tr><td>H3 · A taxa de cópia é estável entre N=10 e N=50 em ambiente limpo.</td><td>Taxas médias semelhantes, com dispersão limitada.</td><td>Se o custo for dominado por bytes, o throughput tende a variar menos que o tempo; amostras pequenas limitam a inferência.</td><td>Diferença consistente entre médias maior que a variação intra-condição.</td></tr>
+      <tr><td>H4 · Carga concorrente reduz a taxa e eleva o custo térmico.</td><td>Menor taxa de cópia e maior temperatura sob distorção.</td><td>CPU e disco competem por recursos; uma única máquina e carga específica limitam generalização.</td><td>Taxa igual ou maior sem aumento térmico em repetições comparáveis.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="section break">
+  <h2>4. Resultados</h2>
+  <h3>4.1 Primeira medição registrada pela integrante Beatriz</h3>
+  <p>A ficha do grupo contém seis rodadas com velocidade de download, blocos informados, descarga da bateria por minuto, temperatura e variância da velocidade. As observações da ficha também registram uso e tempo de CPU. Os valores abaixo foram transcritos para <code>dados/primeira_medicao_bia.csv</code>; mantêm-se separados da coleta complementar feita em 26/11.</p>
+  <table>
+    <thead><tr><th>Cenário</th><th class="num">Rodada</th><th class="num">Download Mbps</th><th class="num">Blocos na ficha</th><th class="num">Bateria %/min</th><th class="num">Temperatura °C</th><th class="num">Variância Mbps²</th></tr></thead>
+    <tbody>
+      <tr><td>10 músicas</td><td class="num">1</td><td class="num">24,3</td><td class="num">1</td><td class="num">0,522</td><td class="num">25</td><td class="num">19,82</td></tr>
+      <tr><td>10 músicas</td><td class="num">2</td><td class="num">29,0</td><td class="num">1</td><td class="num">0,560</td><td class="num">28</td><td class="num">19,82</td></tr>
+      <tr><td>10 músicas</td><td class="num">3</td><td class="num">33,2</td><td class="num">1</td><td class="num">0,527</td><td class="num">30</td><td class="num">19,82</td></tr>
+      <tr><td>50 músicas</td><td class="num">1</td><td class="num">31,4</td><td class="num">5</td><td class="num">0,530</td><td class="num">28</td><td class="num">1,39</td></tr>
+      <tr><td>50 músicas</td><td class="num">2</td><td class="num">29,8</td><td class="num">5</td><td class="num">0,540</td><td class="num">30</td><td class="num">1,39</td></tr>
+      <tr><td>50 músicas</td><td class="num">3</td><td class="num">29,1</td><td class="num">5</td><td class="num">0,581</td><td class="num">33</td><td class="num">1,39</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Resumo das fichas:</strong> download médio de 28,83 Mbps (N=10; variância amostral 19,823) e 30,10 Mbps (N=50; variância 1,390). A descarga média foi 0,536%/min e 0,550%/min, respectivamente; o uso médio de CPU anotado foi 4% e 7%, e o tempo de CPU foi 0,95 s e 4,47 s. A ficha registra 1 e 5 blocos e temperaturas médias de 27,7 °C e 30,3 °C.</p>
+  <div class="note"><strong>Leitura da fonte:</strong> a própria ficha diz que os blocos foram mapeados pela quantidade de entradas, e recomenda executar como administrador e medir com <code>fsutil</code>. Por isso, os valores 1 e 5 são reportados como registrados, sem tratá-los como equivalentes à consulta direta de NTFS abaixo.</div>
+
+  <h3>4.2 Coleta complementar local de 26/11</h3>
+  <p>Esta execução mediu o tempo e a taxa de cópia local em NTFS, além do tamanho de <code>$INDEX_ALLOCATION</code> consultado com <code>fsutil</code>. As nove rodadas completas estão separadas por cenário. A coluna Download ficou vazia nessa coleta; os resultados de download e bateria acima vêm da ficha anterior.</p>
+  <table>
+    <thead><tr><th>Cenário</th><th class="num">N</th><th class="num">Rodada</th><th class="num">Cópia (s)</th><th class="num">Cópia (Mbps)</th><th class="num">Índice (bytes)</th><th class="num">Blocos de 4 KiB</th><th class="num">CPU °C</th></tr></thead>
+    <tbody>
+      <tr><td>Limpo</td><td class="num">10</td><td class="num">1</td><td class="num">0,756</td><td class="num">443,893</td><td class="num">4.096</td><td class="num">1</td><td class="num">51</td></tr>
+      <tr><td>Limpo</td><td class="num">10</td><td class="num">2</td><td class="num">30,070</td><td class="num">11,159</td><td class="num">4.096</td><td class="num">1</td><td class="num">70</td></tr>
+      <tr><td>Limpo</td><td class="num">10</td><td class="num">3</td><td class="num">4,377</td><td class="num">76,669</td><td class="num">4.096</td><td class="num">1</td><td class="num">74</td></tr>
+      <tr><td>Limpo</td><td class="num">50</td><td class="num">1</td><td class="num">19,170</td><td class="num">87,517</td><td class="num">16.384</td><td class="num">4</td><td class="num">66</td></tr>
+      <tr><td>Limpo</td><td class="num">50</td><td class="num">2</td><td class="num">3,250</td><td class="num">516,224</td><td class="num">16.384</td><td class="num">4</td><td class="num">67</td></tr>
+      <tr><td>Limpo</td><td class="num">50</td><td class="num">3</td><td class="num">45,262</td><td class="num">37,067</td><td class="num">16.384</td><td class="num">4</td><td class="num">50</td></tr>
+      <tr><td>Distorção</td><td class="num">10</td><td class="num">1</td><td class="num">0,989</td><td class="num">339,214</td><td class="num">4.096</td><td class="num">1</td><td class="num">74</td></tr>
+      <tr><td>Distorção</td><td class="num">10</td><td class="num">2</td><td class="num">1,864</td><td class="num">180,045</td><td class="num">4.096</td><td class="num">1</td><td class="num">73</td></tr>
+      <tr><td>Distorção</td><td class="num">10</td><td class="num">3</td><td class="num">0,455</td><td class="num">738,209</td><td class="num">4.096</td><td class="num">1</td><td class="num">87</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Metadados diretos:</strong> nesta outra execução, N=10 alocou 4.096 bytes (1 unidade de 4 KiB) e N=50 alocou 16.384 bytes (4 unidades). O registro da ficha anterior para N=50 foi 5 blocos. Como método e execução diferem, os valores não foram fundidos nem um substitui o outro.</p>
+  <table>
+    <thead><tr><th>Cenário</th><th class="num">N</th><th class="num">n</th><th class="num">Média Mbps</th><th class="num">Desvio amostral Mbps</th><th class="num">Variância amostral Mbps²</th></tr></thead>
+    <tbody>
+      <tr><td>Limpo</td><td class="num">10</td><td class="num">3</td><td class="num">177,240</td><td class="num">233,239</td><td class="num">54.400,624</td></tr>
+      <tr><td>Limpo</td><td class="num">50</td><td class="num">3</td><td class="num">213,603</td><td class="num">263,289</td><td class="num">69.321,054</td></tr>
+      <tr><td>Distorção</td><td class="num">10</td><td class="num">3</td><td class="num">419,156</td><td class="num">287,541</td><td class="num">82.679,805</td></tr>
+    </tbody>
+  </table>
+</section>
+<section class="section break">
+  <h2>5. Discussão</h2>
+  <p><strong>Blocos de diretório:</strong> a ficha da primeira medição registra aumento de 1 para 5 blocos entre N=10 e N=50, mapeados pela quantidade de entradas. Na coleta complementar, uma consulta direta ao NTFS encontrou 1 e 4 unidades de 4 KiB. As duas fontes apontam crescimento, mas usam medições diferentes e não devem ser combinadas como se fossem réplicas.</p>
+  <p><strong>Download e bateria:</strong> na ficha, a média de download passou de 28,83 para 30,10 Mbps (+4,4%), e a descarga média de 0,536 para 0,550% por minuto (+2,6%). Com três rodadas e variabilidade observada, não há evidência suficiente para afirmar que a quantidade de músicas alterou essas métricas.</p>
+  <p><strong>CPU e tempo:</strong> as anotações da ficha mostram uso médio de CPU de 4% para 7%, enquanto o tempo de CPU subiu de 0,95 s para 4,47 s. É uma diferença observada que merece atenção, mas o número de repetições é pequeno e faltam detalhes de controle para atribuí-la somente à quantidade de arquivos.</p>
+  <p><strong>Cópia local complementar:</strong> o tempo médio foi 13,735 s para N=10 e 22,561 s para N=50 em ambiente limpo, mas variou de 0,756 a 30,070 s e de 3,250 a 45,262 s. Para N=10 sob carga, a média de taxa foi maior que a limpa; a variabilidade extrema e n=3 tornam a conclusão inconclusiva.</p>
+  <p>O NTFS mantém metadados do diretório em estruturas como <code>$INDEX_ROOT</code> e <code>$INDEX_ALLOCATION</code> com índice <code>$I30</code>. Cache, escrita forçada, agendamento e carga do Windows afetam os tempos observados. Nenhuma das medições equivale ao custo interno de um MP3 físico por USB.</p>
+  <div class="danger"><strong>Interrupção térmica:</strong> a coleta complementar de 50 arquivos sob distorção foi cancelada após o HWMonitor registrar máximo de 91 °C em CPU Package. Não há resultados para essa condição.</div>
+</section>
+<section class="section break">
+  <h2>6. Limites</h2>
+  <ul>
+    <li>Coleta incompleta: não há rodadas distorcidas com N=50.</li>
+    <li>Download e bateria constam na ficha da primeira medição; não constam na coleta complementar local de 26/11. Os conjuntos são apresentados separadamente.</li>
+    <li>A temperatura foi inserida manualmente após as rodadas; não há telemetria contínua.</li>
+    <li>O payload binário de 4 MiB não é áudio MP3 e foi duplicado localmente; o experimento não mede download de 10 ou 50 músicas distintas.</li>
+    <li>O destino foi NTFS local, sem pendrive/MP3 USB. Não se generaliza para FAT32 ou hardware portátil.</li>
+    <li>Três repetições e grande dispersão limitam médias e variâncias. As medidas de velocidade não isolam cache, antivírus, temperatura ou atividade concorrente do Windows.</li>
+    <li>As quatro hipóteses originais da Ficha 3 não foram localizadas; as apresentadas são reconstruções provisórias.</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2>7. Frentes</h2>
+  <table>
+    <thead><tr><th>Integrante</th><th>Investigação/frente</th><th>Cor</th></tr></thead>
+    <tbody>
+      <tr><td>Laura Yumi Rodrigues Shiguemori</td><td>Velocidade de download (Mbps)</td><td class="purple">#7c3aed</td></tr>
+      <tr><td>Giovani de Oliveira Cestari · RA 10738542</td><td>Blocos de diretório alocados (unidades de 4 KiB)</td><td class="green">#16a34a</td></tr>
+      <tr><td>Beatriz Bianco · RA 10735936</td><td>Descarga da bateria (% por minuto)</td><td class="pink">#e11d48</td></tr>
+      <tr><td>Felipe Mendes</td><td>Temperatura (°C) e variância amostral da velocidade (Mbps²)</td><td class="blue">#2563eb</td></tr>
+    </tbody>
+  </table>
+  <p class="small">RAs de Laura e Felipe não estavam nos materiais consultados. As frentes refletem a divisão informada pelo grupo; a declaração final de cada integrante deve ser revisada pelos autores.</p>
+</section>
+
+<section class="section break">
+  <h2>8. Referências</h2>
+  <ol>
+    <li>Arpaci-Dusseau, R. H.; Arpaci-Dusseau, A. C. <em>Operating Systems: Three Easy Pieces</em>, capítulos 39–40. <a href="https://pages.cs.wisc.edu/~remzi/OSTEP/">https://pages.cs.wisc.edu/~remzi/OSTEP/</a>.</li>
+    <li>Microsoft Learn. <em>fsutil</em> e <em>fsutil file</em>. <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil">Documentação do fsutil</a>.</li>
+    <li>Microsoft Learn. <em>Win32_Battery class</em>. <a href="https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/win32-battery">Documentação Win32_Battery</a>.</li>
+    <li>CPUID. <em>HWMonitor</em>. <a href="https://www.cpuid.com/softwares/hwmonitor.html">https://www.cpuid.com/softwares/hwmonitor.html</a>.</li>
+  </ol>
+  <p>O relatório utiliza a ficha transcrita em <code>dados/primeira_medicao_bia.csv</code> e a coleta complementar em <code>dados/coleta_20261126_115344/</code>.</p>
+</section>
+
+<section class="section">
+  <h2>9. Declaração de uso de IA</h2>
+  <table>
+    <thead><tr><th>IA auxiliou em</th><th>Grupo executou, mediu ou deve revisar</th></tr></thead>
+    <tbody>
+      <tr><td>Organização do repositório e README; preparação e execução parcial do script; transcrição da ficha da integrante e extração de nove linhas completas da coleta complementar, cálculo e revisão de estatísticas; redação e formatação deste relatório parcial.</td><td>Execução no notebook, leituras de temperatura no HWMonitor e envio dos valores; revisão dos registros, hipóteses, interpretações e referências; validação de quais resultados representam o experimento do grupo.</td></tr>
+    </tbody>
+  </table>
+  <p class="note"><strong>Transparência:</strong> este documento separa a primeira medição registrada na ficha da coleta complementar parcial. A condição com distorção em N=50 não foi concluída. Os autores devem revisar a transcrição e confirmar a procedência dos métodos antes da entrega.</p>
+  <div class="footer">Grupo BYG · Projeto 2 de Sistemas Operacionais · Versão parcial · 26/11/2026 · Repositório do projeto ligado na capa</div>
+</section>
+</body>
+</html>

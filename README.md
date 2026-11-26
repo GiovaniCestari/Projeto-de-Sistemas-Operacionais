@@ -26,7 +26,9 @@ Há nove rodadas completas no conjunto publicado: três limpas com 10 arquivos, 
 | Distorção | 10 | 3 | 419,156 | 287,541 | 82.679,805 |
 | Distorção | 50 | 0 | — | — | — |
 
-A dispersão é alta; estas médias parciais não sustentam uma conclusão sobre o efeito da quantidade de arquivos ou da distorção. A consulta real do NTFS indicou 1 unidade de 4 KiB em cada diretório de 10 arquivos e 4 unidades no de 50 arquivos. Isso substitui a estimativa antiga de 5 unidades para 50 arquivos, mas precisa ser confirmado com as demais condições antes de atualizar os gráficos finais.
+A dispersão é alta; as médias da cópia local não sustentam uma conclusão sobre o efeito da quantidade de arquivos ou da distorção. Nesta coleta direta com fsutil, o NTFS indicou 1 unidade de 4 KiB para N=10 e 4 para N=50. A ficha anterior da Bia registra 1 e 5 blocos, mapeados pela quantidade de entradas; como o método difere, mantemos os dois resultados identificados por fonte.
+
+A primeira medição registrada por Beatriz contém download, bateria, temperatura e uso/tempo de CPU para seis rodadas. Download médio: 28,83 Mbps (N=10) e 30,10 Mbps (N=50); descarga média: 0,536%/min e 0,550%/min; tempo de CPU médio: 0,95 s e 4,47 s. Os dados transcritos estão em [`dados/primeira_medicao_bia.csv`](dados/primeira_medicao_bia.csv).
 
 Os arquivos da coleta parcial estão em [`dados/coleta_20261126_115344/`](dados/coleta_20261126_115344/): [CSV parcial](dados/coleta_20261126_115344/medicao_parcial.csv), [resumo](dados/coleta_20261126_115344/resumo_parcial.csv), [saída bruta do PowerShell](dados/coleta_20261126_115344/saida_bruta_powershell_parcial.txt) e [saída bruta do fsutil](dados/coleta_20261126_115344/blocos_fsutil.txt). Payloads binários e cópias de teste não foram publicados.
 
@@ -35,8 +37,8 @@ Os arquivos da coleta parcial estão em [`dados/coleta_20261126_115344/`](dados/
 - [`scripts/medir.ps1`](scripts/medir.ps1) — coleta Windows; cria uma pasta exclusiva por execução e não apaga dados existentes.
 - [`medir.ps1`](medir.ps1) e [`medir.sh`](medir.sh) — versões que já estavam no repositório; mantidas durante a padronização.
 - [`dados/`](dados/) — logs e CSVs. Veja [instruções para preservar as saídas](dados/README.md).
-- [`graficos/`](graficos/) — os HTMLs fornecidos pelo grupo; ainda são rascunhos com dados estáticos e não correspondem à coleta parcial.
-- [Relatório PDF parcial](relatorio_projeto2_BYG.pdf) — documenta as nove rodadas completas, as estatísticas descritivas e as limitações. As hipóteses são reconstruções provisórias porque a Ficha 3 original não estava disponível; o relatório não deve ser apresentado como coleta final.
+- [`graficos/`](graficos/) — visualizações dos seis registros da primeira medição da Bia; dados de origem e escopo descritos em [`graficos/README.md`](graficos/README.md). Não incluem a coleta complementar de cópia local.
+- [Relatório PDF parcial](relatorio_projeto2_BYG.pdf) — reúne os dados da primeira medição e as nove rodadas complementares, separa métodos e registra limitações. As hipóteses operacionais são provisórias porque a Ficha 3 original não estava disponível.
 
 ## Como coletar no Windows
 
@@ -60,8 +62,8 @@ Use `-SemInternet` para gerar os arquivos de teste localmente; nesse modo, a mé
 - A velocidade de download e a velocidade de cópia local são operações diferentes.
 - O destino é local e NTFS; não representa latência de um MP3 físico em USB ou FAT32.
 - Temperatura depende da leitura manual do HWMonitor. Bateria depende dos sensores WMI.
-- O CSV parcial não contém medidas de download e bateria; consulte os arquivos brutos e não preencha esses campos por estimativa.
-- As visualizações só devem ser atualizadas depois da coleta restante e da conferência de todas as rodadas.
+- O CSV da coleta complementar local não contém download e bateria; esses valores estão no CSV da primeira medição, em dataset separado.
+- Os gráficos atuais representam a primeira medição registrada pela Bia; não representam a coleta complementar local nem a condição interrompida.
 
 ## Referências
 
@@ -73,4 +75,4 @@ Use `-SemInternet` para gerar os arquivos de teste localmente; nesse modo, a mé
 
 ## Uso de IA
 
-A IA organizou o repositório, preparou e executou parcialmente o script de coleta e consolidou os registros completos. A execução foi interrompida antes de terminar o cenário com distorção em 50 arquivos. As medições de temperatura foram fornecidas pelo grupo via HWMonitor; o grupo deve revisar os resultados e concluir a coleta antes da entrega final.
+A IA organizou o repositório, transcreveu os seis registros da ficha de Beatriz, preparou e executou parcialmente uma coleta complementar e consolidou as estatísticas. A execução complementar foi interrompida antes de terminar N=50 sob distorção. O grupo deve revisar a transcrição e as conclusões antes da entrega.
