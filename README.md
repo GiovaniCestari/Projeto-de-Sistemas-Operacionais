@@ -38,7 +38,7 @@ Os arquivos da coleta complementar original estão em [`dados/coleta_20261126_11
 - [`medir.ps1`](medir.ps1) e [`medir.sh`](medir.sh) — versões que já estavam no repositório; mantidas durante a padronização.
 - [`dados/`](dados/) — logs e CSVs. Veja [instruções para preservar as saídas](dados/README.md).
 - [`graficos/`](graficos/) — visualizações dos seis registros da primeira medição da Bia; dados de origem e escopo descritos em [`graficos/README.md`](graficos/README.md). Não incluem a coleta complementar de cópia local.
-- [Relatório PDF parcial](relatorio_projeto2_BYG.pdf) — reúne os dados da primeira medição e as 12 rodadas complementares, separa métodos e registra limitações. As hipóteses operacionais são provisórias porque a Ficha 3 original não estava disponível.
+- [Relatório PDF parcial](relatorio_projeto2_BYG.pdf) — reúne os dados da primeira medição e as 12 rodadas complementares, separa métodos e registra limitações. As cinco hipóteses foram transcritas da Ficha 4, que reproduz as respostas enviadas na Ficha 3. A ficha menciona EXT4 na condição da métrica de blocos, enquanto a coleta local foi realizada em Windows/NTFS; o relatório explicita essa diferença.
 
 ## Como coletar no Windows
 

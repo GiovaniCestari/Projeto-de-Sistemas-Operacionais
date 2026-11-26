@@ -84,19 +84,20 @@ a { color: #155b83; text-decoration: none; }
 </section>
 
 <section class="section break">
-  <h2>3. Hipóteses</h2>
-  <div class="note"><strong>Nota de procedência:</strong> a Ficha 3 com as quatro hipóteses originais não estava entre os arquivos acessíveis nesta sessão. As hipóteses abaixo são reconstruções operacionais a partir da pergunta e do método; não devem ser citadas como transcrição da Ficha 3.</div>
+  <h2>3. Hipóteses do grupo (Ficha 4)</h2>
+  <div class="note"><strong>Procedência:</strong> a Ficha 4 inclui a hipótese individual de blocos e as hipóteses dos colegas, identificando-as como conteúdo enviado na Ficha 3. A condição da métrica de blocos cita EXT4, enquanto a medição descrita pelo grupo e a coleta local foram feitas em Windows/NTFS; por isso os resultados são identificados pelo sistema de arquivos efetivamente usado.</div>
   <table>
-    <thead><tr><th>Hipótese operacional provisória</th><th>Espera</th><th>Por quê / limite</th><th>O que contrariaria</th></tr></thead>
+    <thead><tr><th>Hipótese registrada</th><th>O que espera</th><th>Racional anotado / condição</th><th>O que contrariaria</th></tr></thead>
     <tbody>
-      <tr><td>H1 · Mais arquivos exigem mais índice de diretório.</td><td>O <code>$INDEX_ALLOCATION</code> será maior em N=50 que em N=10.</td><td>Mais entradas podem ultrapassar o espaço residente em <code>$INDEX_ROOT</code>; o tamanho observado depende do NTFS e do volume.</td><td>Alocação igual ou menor em N=50, repetida sob o mesmo sistema de arquivos.</td></tr>
-      <tr><td>H2 · O tempo total cresce com N.</td><td>Copiar 50 arquivos levará mais tempo que copiar 10.</td><td>Há cinco vezes mais arquivos e bytes; cache, antivírus e armazenamento influenciam a execução.</td><td>Tempo igual ou menor em várias rodadas controladas.</td></tr>
-      <tr><td>H3 · A taxa de cópia é estável entre N=10 e N=50 em ambiente limpo.</td><td>Taxas médias semelhantes, com dispersão limitada.</td><td>Se o custo for dominado por bytes, o throughput tende a variar menos que o tempo; amostras pequenas limitam a inferência.</td><td>Diferença consistente entre médias maior que a variação intra-condição.</td></tr>
-      <tr><td>H4 · Carga concorrente reduz a taxa e eleva o custo térmico.</td><td>Menor taxa de cópia e maior temperatura sob distorção.</td><td>CPU e disco competem por recursos; uma única máquina e carga específica limitam generalização.</td><td>Taxa igual ou maior sem aumento térmico em repetições comparáveis.</td></tr>
+      <tr><td>H1 · Blocos de diretório (Giovani)</td><td>Mais blocos ao passar de 10 para 50 músicas.</td><td>Uma entrada por arquivo; a Ficha cita nomes e metadados, nomes curtos 8.3 no NTFS e alocação em degraus de 4 KiB.</td><td>A mesma quantidade de blocos em N=10 e N=50.</td></tr>
+      <tr><td>H2 · Download (Laura)</td><td>Velocidade estável ou com pequena queda de N=10 para N=50; rede sem outros downloads.</td><td>Comparar a taxa média com o dispositivo de teste como único ativo na rede.</td><td>Queda clara e maior que a variação entre rodadas.</td></tr>
+      <tr><td>H3 · Bateria (Beatriz)</td><td>A bateria cair menos por minuto em N=10 do que em N=50.</td><td>Medir descarga por minuto nas duas quantidades.</td><td>Descarga igual ou menor em N=50.</td></tr>
+      <tr><td>H4 · Temperatura (Felipe)</td><td>A temperatura subir de N=10 para N=50.</td><td>Registrar temperatura durante a transferência para o aparelho/condição de teste.</td><td>Temperatura igual ou menor em N=50.</td></tr>
+      <tr><td>H5 · Variância da velocidade (Felipe)</td><td>A variância da velocidade subir de N=10 para N=50.</td><td>Calcular a variância depois de coletar as velocidades.</td><td>Variância igual ou menor em N=50.</td></tr>
     </tbody>
   </table>
+  <p class="small">A justificativa sobre nomes 8.3 e blocos em degraus é apresentada como racional do grupo. Os valores medidos nesta coleta são de Windows/NTFS local; a Ficha 4 também descreve como próximo passo testar a transferência em um MP3 físico por USB.</p>
 </section>
-
 <section class="section break">
   <h2>4. Resultados</h2>
   <h3>4.1 Primeira medição registrada pela integrante Beatriz</h3>
@@ -158,11 +159,13 @@ a { color: #155b83; text-decoration: none; }
 </section>
 <section class="section">
   <h2>5. Discussão</h2>
-  <p><strong>Blocos de diretório:</strong> a ficha da primeira medição registra aumento de 1 para 5 blocos entre N=10 e N=50, mapeados pela quantidade de entradas. Na coleta complementar, uma consulta direta ao NTFS encontrou 1 e 4 unidades de 4 KiB. As duas fontes apontam crescimento, mas usam medições diferentes e não devem ser combinadas como se fossem réplicas.</p>
-  <p><strong>Download e bateria:</strong> na ficha, a média de download passou de 28,83 para 30,10 Mbps (+4,4%), e a descarga média de 0,536 para 0,550% por minuto (+2,6%). Com três rodadas e variabilidade observada, não há evidência suficiente para afirmar que a quantidade de músicas alterou essas métricas.</p>
-  <p><strong>CPU e tempo:</strong> as anotações da ficha mostram uso médio de CPU de 4% para 7%, enquanto o tempo de CPU subiu de 0,95 s para 4,47 s. É uma diferença observada que merece atenção, mas o número de repetições é pequeno e faltam detalhes de controle para atribuí-la somente à quantidade de arquivos.</p>
-  <p><strong>Cópia local complementar:</strong> em ambiente limpo, o tempo médio foi 13,735 s para N=10 e 22,561 s para N=50, com grande variação. Nas novas rodadas N=50 sob carga, a taxa média foi 58,304 Mbps, contra 213,603 Mbps na amostra limpa anterior. A diferença observada é grande, mas os tempos variaram de 14,559 a 69,840 s; com n=3 e execuções em sessões distintas, não se atribui causalidade isoladamente à carga.</p>
-  <p>O NTFS mantém metadados do diretório em estruturas como <code>$INDEX_ROOT</code> e <code>$INDEX_ALLOCATION</code> com índice <code>$I30</code>. Cache, escrita forçada, agendamento e carga do Windows afetam os tempos observados. Nenhuma das medições equivale ao custo interno de um MP3 físico por USB.</p>
+  <p><strong>H1 — direção compatível:</strong> a ficha registra 1 bloco em N=10 e 5 em N=50, estimados pela quantidade de entradas. A consulta direta em NTFS, no cenário limpo, encontrou 1 e 4 unidades de 4 KiB. O fsutil das novas rodadas N=50 sob carga retornou acesso negado; não há leitura direta dessa condição.</p>
+  <p><strong>H2 — praticamente estável nesta amostra:</strong> a média de download foi 28,83 Mbps em N=10 e 30,10 Mbps em N=50 (+4,4%). O resultado não mostra a pequena queda esperada, mas a diferença é modesta perante a variação das três rodadas.</p>
+  <p><strong>H3 — direção compatível, sem evidência forte:</strong> a descarga média passou de 0,536 para 0,550% por minuto. A diferença é pequena em relação à dispersão entre medições; não permite afirmar que N=50 consuma mais bateria por minuto.</p>
+  <p><strong>H4 — direção compatível:</strong> a temperatura média anotada na ficha foi de 27,7 °C para 30,3 °C. Foram só três leituras por condição e a temperatura foi registrada manualmente.</p>
+  <p><strong>H5 — não sustentada:</strong> a variância da velocidade registrada na ficha caiu de 19,82 Mbps² em N=10 para 1,39 Mbps² em N=50, ao contrário da expectativa. O cálculo a partir das três taxas de download de cada condição confirma esses valores arredondados.</p>
+  <p><strong>Cópia local complementar:</strong> as novas rodadas N=50 sob carga tiveram taxa média de 58,304 Mbps, contra 213,603 Mbps na amostra limpa anterior. A diferença observada é grande, mas as três taxas variaram de 24,022 a 115,236 Mbps e as execuções ocorreram em sessões distintas; não se atribui causalidade isoladamente à carga.</p>
+  <p>O NTFS mantém metadados do diretório em estruturas como <code>$INDEX_ROOT</code> e <code>$INDEX_ALLOCATION</code> com índice <code>$I30</code>. Cache, escrita forçada, agendamento e carga do Windows afetam os tempos observados. A medição local não equivale ao custo interno de um MP3 físico por USB.</p>
   <div class="danger"><strong>Registro térmico:</strong> uma tentativa anterior atingiu pico de 91 °C e foi interrompida. Após resfriamento, três rodadas N=50 sob carga foram concluídas; as leituras pós-cópia ficaram entre 50 e 53 °C. O pico durante essas novas rodadas não foi registrado.</div>
 </section>
 <section class="section break">
@@ -174,7 +177,7 @@ a { color: #155b83; text-decoration: none; }
     <li>O payload binário de 4 MiB não é áudio MP3 e foi duplicado localmente; o experimento não mede download de 10 ou 50 músicas distintas.</li>
     <li>O destino foi NTFS local, sem pendrive/MP3 USB. Não se generaliza para FAT32 ou hardware portátil.</li>
     <li>Três repetições e grande dispersão limitam médias e variâncias. As medidas de velocidade não isolam cache, antivírus, temperatura ou atividade concorrente do Windows.</li>
-    <li>As quatro hipóteses originais da Ficha 3 não foram localizadas; as apresentadas são reconstruções provisórias.</li>
+    <li>As hipóteses foram transcritas das seções correspondentes da Ficha 4, que reproduz o material enviado na Ficha 3.</li>
   </ul>
 </section>
 
