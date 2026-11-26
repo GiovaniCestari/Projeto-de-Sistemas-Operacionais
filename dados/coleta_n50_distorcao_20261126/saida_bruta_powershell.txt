@@ -1,0 +1,9 @@
+Coleta complementar N=50 sob carga, 2026-11-26.
+Arquivos-fonte: 50 arquivos de 4 MiB reutilizados da coleta local anterior; total 209715200 bytes.
+Carga concorrente: laço de CPU, geração aleatória e gravações concorrentes de 1 MiB, conforme rotina do script do grupo.
+Temperaturas CPU Package foram informadas manualmente após cada cópia; o máximo durante as rodadas não foi lido.
+fsutil file layout: Erro 5: Acesso negado (as três rodadas).
+
+Rodada 1: 14.559 s; 115.236 Mbps; CPU do processo 1.031 s; temperatura após a cópia 50 °C.
+Rodada 2: 47.058 s; 35.653 Mbps; CPU do processo 1.000 s; temperatura após a cópia 53 °C.
+Rodada 3: 69.840 s; 24.022 Mbps; CPU do processo 0.984 s; temperatura após a cópia 51 °C.

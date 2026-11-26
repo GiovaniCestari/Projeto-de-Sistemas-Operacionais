@@ -55,7 +55,7 @@ a { color: #155b83; text-decoration: none; }
       <div><strong>Repositório:</strong> <a href="https://github.com/GiovaniCestari/Projeto-de-Sistemas-Operacionais">Projeto-de-Sistemas-Operacionais</a></div>
     </div>
   </div>
-  <p class="small">Versão parcial: inclui os seis registros da ficha da Beatriz e nove rodadas complementares de cópia. A coleta com distorção em 50 arquivos foi interrompida ao atingir pico de 91 °C em CPU Package.</p>
+  <p class="small">Versão parcial: inclui seis registros da ficha da Beatriz, nove rodadas da primeira coleta complementar e três novas rodadas N=50 sob carga. Uma tentativa anterior atingiu 91 °C; as novas leituras foram feitas após cada cópia, sem monitoramento do pico.</p>
 </section>
 
 <section class="section">
@@ -76,7 +76,7 @@ a { color: #155b83; text-decoration: none; }
       <tr><td>Ambiente limpo</td><td>Cópia serial, sem carga artificial em segundo plano</td><td>6 rodadas completas</td></tr>
       <tr><td>Distorção</td><td>Laço de CPU e gravações concorrentes de 1 MiB em disco</td><td>3 rodadas completas em N=10; N=50 interrompido</td></tr>
       <tr><td>Blocos do diretório</td><td>Saída integral de <code>fsutil file layout</code>, incluindo <code>$I30:$INDEX_ALLOCATION</code></td><td>Consulta administrativa disponível</td></tr>
-      <tr><td>Temperatura</td><td>Leitura manual no HWMonitor após cada rodada</td><td>9 valores informados</td></tr>
+      <tr><td>Temperatura</td><td>Leitura manual no HWMonitor após cada rodada</td><td>9 valores nas primeiras rodadas; mais 3 leituras após as cópias N=50</td></tr>
       <tr><td>Download / bateria / CPU</td><td>Download de amostra; sensores WMI e process time no script</td><td>Ficha com 6 rodadas; separada da coleta complementar</td></tr>
     </tbody>
   </table>
@@ -140,20 +140,35 @@ a { color: #155b83; text-decoration: none; }
       <tr><td>Distorção</td><td class="num">10</td><td class="num">3</td><td class="num">419,156</td><td class="num">287,541</td><td class="num">82.679,805</td></tr>
     </tbody>
   </table>
+
 </section>
 <section class="section break">
+  <h3>4.3 N=50 sob carga concorrente, após resfriamento</h3>
+  <p>Depois de deixar o notebook resfriar, foram concluídas três cópias de 50 arquivos com a mesma rotina concorrente de CPU e gravações de 1 MiB. Os valores de temperatura abaixo foram lidos no HWMonitor logo após cada cópia; o pico durante a execução não foi monitorado automaticamente.</p>
+  <table>
+    <thead><tr><th>Rodada</th><th class="num">Cópia (s)</th><th class="num">Cópia (Mbps)</th><th class="num">CPU do processo (s)</th><th class="num">CPU Package após (°C)</th><th>fsutil</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td class="num">14,559</td><td class="num">115,236</td><td class="num">1,031</td><td class="num">50</td><td>Acesso negado</td></tr>
+      <tr><td>2</td><td class="num">47,058</td><td class="num">35,653</td><td class="num">1,000</td><td class="num">53</td><td>Acesso negado</td></tr>
+      <tr><td>3</td><td class="num">69,840</td><td class="num">24,022</td><td class="num">0,984</td><td class="num">51</td><td>Acesso negado</td></tr>
+      <tr><td><strong>Média (n=3)</strong></td><td class="num">43,819</td><td class="num">58,304</td><td class="num">1,005</td><td class="num">51,3</td><td>Não medido</td></tr>
+    </tbody>
+  </table>
+  <p class="small">A variação amostral da taxa de cópia foi alta: desvio padrão 49,647 Mbps e variância 2.464,788 Mbps². O arquivo <code>dados/coleta_n50_distorcao_20261126/medicao.csv</code> reúne as três linhas. Não foi possível consultar o índice do diretório com <code>fsutil</code> nesta sessão sem elevação.</p>
+</section>
+<section class="section">
   <h2>5. Discussão</h2>
   <p><strong>Blocos de diretório:</strong> a ficha da primeira medição registra aumento de 1 para 5 blocos entre N=10 e N=50, mapeados pela quantidade de entradas. Na coleta complementar, uma consulta direta ao NTFS encontrou 1 e 4 unidades de 4 KiB. As duas fontes apontam crescimento, mas usam medições diferentes e não devem ser combinadas como se fossem réplicas.</p>
   <p><strong>Download e bateria:</strong> na ficha, a média de download passou de 28,83 para 30,10 Mbps (+4,4%), e a descarga média de 0,536 para 0,550% por minuto (+2,6%). Com três rodadas e variabilidade observada, não há evidência suficiente para afirmar que a quantidade de músicas alterou essas métricas.</p>
   <p><strong>CPU e tempo:</strong> as anotações da ficha mostram uso médio de CPU de 4% para 7%, enquanto o tempo de CPU subiu de 0,95 s para 4,47 s. É uma diferença observada que merece atenção, mas o número de repetições é pequeno e faltam detalhes de controle para atribuí-la somente à quantidade de arquivos.</p>
-  <p><strong>Cópia local complementar:</strong> o tempo médio foi 13,735 s para N=10 e 22,561 s para N=50 em ambiente limpo, mas variou de 0,756 a 30,070 s e de 3,250 a 45,262 s. Para N=10 sob carga, a média de taxa foi maior que a limpa; a variabilidade extrema e n=3 tornam a conclusão inconclusiva.</p>
+  <p><strong>Cópia local complementar:</strong> em ambiente limpo, o tempo médio foi 13,735 s para N=10 e 22,561 s para N=50, com grande variação. Nas novas rodadas N=50 sob carga, a taxa média foi 58,304 Mbps, contra 213,603 Mbps na amostra limpa anterior. A diferença observada é grande, mas os tempos variaram de 14,559 a 69,840 s; com n=3 e execuções em sessões distintas, não se atribui causalidade isoladamente à carga.</p>
   <p>O NTFS mantém metadados do diretório em estruturas como <code>$INDEX_ROOT</code> e <code>$INDEX_ALLOCATION</code> com índice <code>$I30</code>. Cache, escrita forçada, agendamento e carga do Windows afetam os tempos observados. Nenhuma das medições equivale ao custo interno de um MP3 físico por USB.</p>
-  <div class="danger"><strong>Interrupção térmica:</strong> a coleta complementar de 50 arquivos sob distorção foi cancelada após o HWMonitor registrar máximo de 91 °C em CPU Package. Não há resultados para essa condição.</div>
+  <div class="danger"><strong>Registro térmico:</strong> uma tentativa anterior atingiu pico de 91 °C e foi interrompida. Após resfriamento, três rodadas N=50 sob carga foram concluídas; as leituras pós-cópia ficaram entre 50 e 53 °C. O pico durante essas novas rodadas não foi registrado.</div>
 </section>
 <section class="section break">
   <h2>6. Limites</h2>
   <ul>
-    <li>Coleta incompleta: não há rodadas distorcidas com N=50.</li>
+    <li>As três rodadas N=50 sob carga têm apenas temperaturas pós-cópia, não pico contínuo; fsutil retornou acesso negado nessa sessão.</li>
     <li>Download e bateria constam na ficha da primeira medição; não constam na coleta complementar local de 26/11. Os conjuntos são apresentados separadamente.</li>
     <li>A temperatura foi inserida manualmente após as rodadas; não há telemetria contínua.</li>
     <li>O payload binário de 4 MiB não é áudio MP3 e foi duplicado localmente; o experimento não mede download de 10 ou 50 músicas distintas.</li>
@@ -196,7 +211,7 @@ a { color: #155b83; text-decoration: none; }
       <tr><td>Organização do repositório e README; preparação e execução parcial do script; transcrição da ficha da integrante e extração de nove linhas completas da coleta complementar, cálculo e revisão de estatísticas; redação e formatação deste relatório parcial.</td><td>Execução no notebook, leituras de temperatura no HWMonitor e envio dos valores; revisão dos registros, hipóteses, interpretações e referências; validação de quais resultados representam o experimento do grupo.</td></tr>
     </tbody>
   </table>
-  <p class="note"><strong>Transparência:</strong> este documento separa a primeira medição registrada na ficha da coleta complementar parcial. A condição com distorção em N=50 não foi concluída. Os autores devem revisar a transcrição e confirmar a procedência dos métodos antes da entrega.</p>
+  <p class="note"><strong>Transparência:</strong> este documento separa a primeira medição registrada na ficha da coleta complementar parcial. As três novas rodadas N=50 foram concluídas; a leitura de temperatura disponível é a pós-cópia, não o pico contínuo. Os autores devem revisar a transcrição e confirmar a procedência dos métodos antes da entrega.</p>
   <div class="footer">Grupo BYG · Projeto 2 de Sistemas Operacionais · Versão parcial · 26/11/2026 · Repositório do projeto ligado na capa</div>
 </section>
 </body>

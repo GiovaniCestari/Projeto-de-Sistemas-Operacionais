@@ -1,0 +1,4 @@
+Cenario;Musicas;Repeticao;Tempo_copia_s;Velocidade_copia_Mbps;CPU_processo_s;Temperatura_pos_copia_C;Temperatura_pico_C;Tamanho_arquivos_bytes;Metodo_carga;fsutil;Fonte
+Distorcao;50;1;14.559;115.236;1.031;50;;209715200;CPU+gravacao concorrente, rotina do script medir.ps1;Acesso negado;coleta_n50_distorcao_20261126_124453
+Distorcao;50;2;47.058;35.653;1.000;53;;209715200;CPU+gravacao concorrente, rotina do script medir.ps1;Acesso negado;coleta_n50_distorcao_20261126_124641
+Distorcao;50;3;69.840;24.022;0.984;51;;209715200;CPU+gravacao concorrente, rotina do script medir.ps1;Acesso negado;coleta_n50_distorcao_20261126_124809

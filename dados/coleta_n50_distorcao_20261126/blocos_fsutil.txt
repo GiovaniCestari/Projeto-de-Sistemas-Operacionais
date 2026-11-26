@@ -1,0 +1,2 @@
+Três consultas a fsutil file layout sobre os diretórios de destino retornaram: Erro 5: Acesso negado.
+Metadados do diretório não medidos nesta coleta.
