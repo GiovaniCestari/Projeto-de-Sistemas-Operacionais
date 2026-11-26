@@ -1,3 +1,4 @@
+PowerShell parse OK
 param(
   [int[]]$Condicoes = @(10, 50),
   [int]$Repeticoes = 3,
@@ -105,8 +106,6 @@ try {
         $cpuStart = Get-CimInstance Win32_PerfFormattedData_PerfOS_Processor -Filter "Name='_Total'" -ErrorAction SilentlyContinue
         $process = Get-Process -Id $PID
         $cpuProcessStart = $process.TotalProcessorTime.TotalSeconds
-        $cpuSamples = @()
-        $batteryRates = @()
         $watch = [Diagnostics.Stopwatch]::StartNew()
         try {
           foreach ($file in 1..$n) {
@@ -115,10 +114,6 @@ try {
             $input = [IO.File]::OpenRead($source)
             $output = New-Object IO.FileStream($target,[IO.FileMode]::CreateNew,[IO.FileAccess]::Write,[IO.FileShare]::None,1MB,[IO.FileOptions]::WriteThrough)
             try { $input.CopyTo($output); $output.Flush($true) } finally { $input.Dispose(); $output.Dispose() }
-            $cpuSample = Get-CimInstance Win32_PerfFormattedData_PerfOS_Processor -Filter "Name='_Total'" -ErrorAction SilentlyContinue
-            if ($cpuSample) { $cpuSamples += [double]$cpuSample.PercentProcessorTime }
-            $batterySample = Get-CimInstance -Namespace root\wmi -ClassName BatteryStatus -ErrorAction SilentlyContinue | Select-Object -First 1
-            if ($batterySample -and $batterySample.DischargeRate -gt 0) { $batteryRates += [double]$batterySample.DischargeRate }
           }
         } finally {
           $watch.Stop()
@@ -130,11 +125,12 @@ try {
         $process.Refresh()
         $cpuProcessSeconds = [Math]::Round(($process.TotalProcessorTime.TotalSeconds - $cpuProcessStart),3)
         $cpuMean = $null
-        if ($cpuSamples.Count) { $cpuMean = [Math]::Round(($cpuSamples | Measure-Object -Average).Average,1) }
+        if ($cpuStart -and $cpuEnd) { $cpuMean = [Math]::Round(([double]$cpuStart.PercentProcessorTime + [double]$cpuEnd.PercentProcessorTime) / 2,1) }
         $batteryRateMean = $null
         $batteryPctPerMin = $null
-        if ($batteryRates.Count) {
-          $batteryRateMean = [Math]::Round(($batteryRates | Measure-Object -Average).Average,1)
+        $rateValues = @($batteryRateStart.DischargeRate,$batteryRateEnd.DischargeRate) | Where-Object { $_ -gt 0 }
+        if ($rateValues.Count) {
+          $batteryRateMean = [Math]::Round(($rateValues | Measure-Object -Average).Average,1)
           if ($fullCapacity -gt 0) { $batteryPctPerMin = [Math]::Round(100 * ($batteryRateMean / 60) / $fullCapacity,4) }
         }
         $layout = (& fsutil file layout $dest 2>&1 | Out-String)
@@ -176,6 +172,10 @@ try {
   Write-Output "CSV: $csvPath"
   Write-Output "CSV pt-BR: $csvBrPath"
   Write-Output "fsutil bruto: $blockLog"
+} catch {
+  $failurePath = Join-Path $runRoot 'erro_execucao.txt'
+  ($_ | Out-String) | Set-Content -LiteralPath $failurePath -Encoding UTF8
+  Write-Error ("Falha na coleta. Log preservado em: $failurePath. Detalhe: " + $_.Exception.Message)
 } finally {
   $rng.Dispose()
   Stop-Transcript | Out-Null
