@@ -36,7 +36,7 @@ Os arquivos da coleta parcial estão em [`dados/coleta_20261126_115344/`](dados/
 - [`medir.ps1`](medir.ps1) e [`medir.sh`](medir.sh) — versões que já estavam no repositório; mantidas durante a padronização.
 - [`dados/`](dados/) — logs e CSVs. Veja [instruções para preservar as saídas](dados/README.md).
 - [`graficos/`](graficos/) — os HTMLs fornecidos pelo grupo; ainda são rascunhos com dados estáticos e não correspondem à coleta parcial.
-- O relatório PDF final ainda precisa ser montado após a coleta completa e a validação das hipóteses originais.
+- [Relatório PDF parcial](relatorio_projeto2_BYG.pdf) — documenta as nove rodadas completas, as estatísticas descritivas e as limitações. As hipóteses são reconstruções provisórias porque a Ficha 3 original não estava disponível; o relatório não deve ser apresentado como coleta final.
 
 ## Como coletar no Windows
 
