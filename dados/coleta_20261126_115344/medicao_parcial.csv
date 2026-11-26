@@ -1,0 +1,11 @@
+"Cenario";"Musicas";"Repeticao";"Download_Mbps";"Copia_s";"Copia_Mbps";"BlocosDiretorio_4KiB";"INDEX_ALLOCATION_Bytes";"Temperatura_C";"Status"
+"limpo";"10";"1";"";"0.7559133";"443.893";"1";"4096";"51";"Completa; download nÃ£o registrado no transcript"
+"limpo";"10";"2";"";"30.0700338";"11.159";"1";"4096";"70";"Completa; download nÃ£o registrado no transcript"
+"limpo";"10";"3";"";"4.3765445";"76.669";"1";"4096";"74";"Completa; download nÃ£o registrado no transcript"
+"limpo";"50";"1";"";"19.170341";"87.517";"4";"16384";"66";"Completa; download nÃ£o registrado no transcript"
+"limpo";"50";"2";"";"3.2499849";"516.224";"4";"16384";"67";"Completa; download nÃ£o registrado no transcript"
+"limpo";"50";"3";"";"45.2616293";"37.067";"4";"16384";"50";"Completa; download nÃ£o registrado no transcript"
+"distorcao";"10";"1";"";"0.9891814";"339.214";"1";"4096";"74";"Completa; download nÃ£o registrado no transcript"
+"distorcao";"10";"2";"";"1.8636641";"180.045";"1";"4096";"73";"Completa; download nÃ£o registrado no transcript"
+"distorcao";"10";"3";"";"0.4545382";"738.209";"1";"4096";"87";"Completa; download nÃ£o registrado no transcript"
+
