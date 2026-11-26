@@ -1,0 +1,5 @@
+# Payloads e cópias gerados pela coleta são grandes; preserve localmente.
+dados/coleta_*/fontes/
+dados/coleta_*/destino_*/
+dados/coleta_*/stress_*/
+dados/coleta_*/bruto/*.bin
