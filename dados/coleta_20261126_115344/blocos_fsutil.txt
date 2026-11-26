@@ -1,0 +1,491 @@
+
+=== cenÃ¡rio=limpo N=10 repetiÃ§Ã£o=1 diretÃ³rio=dados/coleta_20261126_115344\destino_limpo_10_r1 ===
+
+********* Arquivo 0x0055000000036e74 *********
+Número de referência de arquivo   : 0x0055000000036e74
+Atributos de arquivo         : 0x00000010: Diretório
+Sinalizadores de entrada de arquivo        : 0x00000000
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome DOS     : DESTIN~1
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome NTFS    : \Users\gioce\Documents\Codex\2026-11-26\https-github-com-giovanicestari-projeto-de\outputs\dados\coleta_20261126_115344\destino_limpo_10_r1
+Hora de Criação:            11/26/2026 14:53:47
+Hora do Último Acesso:         11/26/2026 14:53:59
+Hora da Última Gravação:          11/26/2026 14:53:59
+Hora da Alteração:              11/26/2026 14:53:59
+LastUsn:                  23,883,815,096
+OwnerId:                  0
+SecurityId:               16673
+StorageReserveId        : 0
+Fluxo                  : 0x010  ::$STANDARD_INFORMATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 72
+    Tamanho Alocado      : 72
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 82
+    Tamanho Alocado      : 88
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 104
+    Tamanho Alocado      : 104
+Fluxo                  : 0x090  :$I30:$INDEX_ROOT
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 56
+    Tamanho Alocado      : 56
+Fluxo                  : 0x0a0  :$I30:$INDEX_ALLOCATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x00000000: *NENHUM*
+    Tamanho                : 4,096
+    Tamanho Alocado      : 4,096
+    Extensões:              1 Extensões
+Fluxo                  : 0x0b0  :$I30:$BITMAP
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 8
+    Tamanho Alocado      : 8
+
+
+=== cenÃ¡rio=limpo N=10 repetiÃ§Ã£o=2 diretÃ³rio=dados/coleta_20261126_115344\destino_limpo_10_r2 ===
+
+********* Arquivo 0x0067000000007202 *********
+Número de referência de arquivo   : 0x0067000000007202
+Atributos de arquivo         : 0x00000010: Diretório
+Sinalizadores de entrada de arquivo        : 0x00000000
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome DOS     : DESTIN~2
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome NTFS    : \Users\gioce\Documents\Codex\2026-11-26\https-github-com-giovanicestari-projeto-de\outputs\dados\coleta_20261126_115344\destino_limpo_10_r2
+Hora de Criação:            11/26/2026 14:55:28
+Hora do Último Acesso:         11/26/2026 14:55:57
+Hora da Última Gravação:          11/26/2026 14:55:57
+Hora da Alteração:              11/26/2026 14:55:57
+LastUsn:                  23,883,990,976
+OwnerId:                  0
+SecurityId:               16673
+StorageReserveId        : 0
+Fluxo                  : 0x010  ::$STANDARD_INFORMATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 72
+    Tamanho Alocado      : 72
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 82
+    Tamanho Alocado      : 88
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 104
+    Tamanho Alocado      : 104
+Fluxo                  : 0x090  :$I30:$INDEX_ROOT
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 56
+    Tamanho Alocado      : 56
+Fluxo                  : 0x0a0  :$I30:$INDEX_ALLOCATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x00000000: *NENHUM*
+    Tamanho                : 4,096
+    Tamanho Alocado      : 4,096
+    Extensões:              1 Extensões
+Fluxo                  : 0x0b0  :$I30:$BITMAP
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 8
+    Tamanho Alocado      : 8
+
+
+=== cenÃ¡rio=limpo N=10 repetiÃ§Ã£o=3 diretÃ³rio=dados/coleta_20261126_115344\destino_limpo_10_r3 ===
+
+********* Arquivo 0x0044000000007294 *********
+Número de referência de arquivo   : 0x0044000000007294
+Atributos de arquivo         : 0x00000010: Diretório
+Sinalizadores de entrada de arquivo        : 0x00000000
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome DOS     : DESTIN~3
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome NTFS    : \Users\gioce\Documents\Codex\2026-11-26\https-github-com-giovanicestari-projeto-de\outputs\dados\coleta_20261126_115344\destino_limpo_10_r3
+Hora de Criação:            11/26/2026 14:56:45
+Hora do Último Acesso:         11/26/2026 14:56:49
+Hora da Última Gravação:          11/26/2026 14:56:49
+Hora da Alteração:              11/26/2026 14:56:49
+LastUsn:                  23,884,034,416
+OwnerId:                  0
+SecurityId:               16673
+StorageReserveId        : 0
+Fluxo                  : 0x010  ::$STANDARD_INFORMATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 72
+    Tamanho Alocado      : 72
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 82
+    Tamanho Alocado      : 88
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 104
+    Tamanho Alocado      : 104
+Fluxo                  : 0x090  :$I30:$INDEX_ROOT
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 56
+    Tamanho Alocado      : 56
+Fluxo                  : 0x0a0  :$I30:$INDEX_ALLOCATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x00000000: *NENHUM*
+    Tamanho                : 4,096
+    Tamanho Alocado      : 4,096
+    Extensões:              1 Extensões
+Fluxo                  : 0x0b0  :$I30:$BITMAP
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 8
+    Tamanho Alocado      : 8
+
+
+=== cenÃ¡rio=limpo N=50 repetiÃ§Ã£o=1 diretÃ³rio=dados/coleta_20261126_115344\destino_limpo_50_r1 ===
+
+********* Arquivo 0x003e00000000acff *********
+Número de referência de arquivo   : 0x003e00000000acff
+Atributos de arquivo         : 0x00000010: Diretório
+Sinalizadores de entrada de arquivo        : 0x00000000
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome DOS     : DESTIN~4
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome NTFS    : \Users\gioce\Documents\Codex\2026-11-26\https-github-com-giovanicestari-projeto-de\outputs\dados\coleta_20261126_115344\destino_limpo_50_r1
+Hora de Criação:            11/26/2026 14:56:55
+Hora do Último Acesso:         11/26/2026 14:57:15
+Hora da Última Gravação:          11/26/2026 14:57:15
+Hora da Alteração:              11/26/2026 14:57:15
+LastUsn:                  23,884,052,000
+OwnerId:                  0
+SecurityId:               16673
+StorageReserveId        : 0
+Fluxo                  : 0x010  ::$STANDARD_INFORMATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 72
+    Tamanho Alocado      : 72
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 82
+    Tamanho Alocado      : 88
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 104
+    Tamanho Alocado      : 104
+Fluxo                  : 0x090  :$I30:$INDEX_ROOT
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 416
+    Tamanho Alocado      : 416
+Fluxo                  : 0x0a0  :$I30:$INDEX_ALLOCATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x00000000: *NENHUM*
+    Tamanho                : 16,384
+    Tamanho Alocado      : 16,384
+    Extensões:              4 Extensões
+Fluxo                  : 0x0b0  :$I30:$BITMAP
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 8
+    Tamanho Alocado      : 8
+
+
+=== cenÃ¡rio=limpo N=50 repetiÃ§Ã£o=2 diretÃ³rio=dados/coleta_20261126_115344\destino_limpo_50_r2 ===
+
+********* Arquivo 0x0018000000040faa *********
+Número de referência de arquivo   : 0x0018000000040faa
+Atributos de arquivo         : 0x00000010: Diretório
+Sinalizadores de entrada de arquivo        : 0x00000000
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome DOS     : DEF8BA~1
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome NTFS    : \Users\gioce\Documents\Codex\2026-11-26\https-github-com-giovanicestari-projeto-de\outputs\dados\coleta_20261126_115344\destino_limpo_50_r2
+Hora de Criação:            11/26/2026 14:57:17
+Hora do Último Acesso:         11/26/2026 14:57:30
+Hora da Última Gravação:          11/26/2026 14:57:30
+Hora da Alteração:              11/26/2026 14:57:30
+LastUsn:                  23,884,100,352
+OwnerId:                  0
+SecurityId:               16673
+StorageReserveId        : 0
+Fluxo                  : 0x010  ::$STANDARD_INFORMATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 72
+    Tamanho Alocado      : 72
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 82
+    Tamanho Alocado      : 88
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 104
+    Tamanho Alocado      : 104
+Fluxo                  : 0x090  :$I30:$INDEX_ROOT
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 416
+    Tamanho Alocado      : 416
+Fluxo                  : 0x0a0  :$I30:$INDEX_ALLOCATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x00000000: *NENHUM*
+    Tamanho                : 16,384
+    Tamanho Alocado      : 16,384
+    Extensões:              4 Extensões
+Fluxo                  : 0x0b0  :$I30:$BITMAP
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 8
+    Tamanho Alocado      : 8
+
+
+=== cenÃ¡rio=limpo N=50 repetiÃ§Ã£o=3 diretÃ³rio=dados/coleta_20261126_115344\destino_limpo_50_r3 ===
+
+********* Arquivo 0x00200000000414c6 *********
+Número de referência de arquivo   : 0x00200000000414c6
+Atributos de arquivo         : 0x00000010: Diretório
+Sinalizadores de entrada de arquivo        : 0x00000000
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome DOS     : DEAEAF~1
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome NTFS    : \Users\gioce\Documents\Codex\2026-11-26\https-github-com-giovanicestari-projeto-de\outputs\dados\coleta_20261126_115344\destino_limpo_50_r3
+Hora de Criação:            11/26/2026 14:57:47
+Hora do Último Acesso:         11/26/2026 14:58:41
+Hora da Última Gravação:          11/26/2026 14:58:41
+Hora da Alteração:              11/26/2026 14:58:41
+LastUsn:                  23,884,148,600
+OwnerId:                  0
+SecurityId:               16673
+StorageReserveId        : 0
+Fluxo                  : 0x010  ::$STANDARD_INFORMATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 72
+    Tamanho Alocado      : 72
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 82
+    Tamanho Alocado      : 88
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 104
+    Tamanho Alocado      : 104
+Fluxo                  : 0x090  :$I30:$INDEX_ROOT
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 416
+    Tamanho Alocado      : 416
+Fluxo                  : 0x0a0  :$I30:$INDEX_ALLOCATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x00000000: *NENHUM*
+    Tamanho                : 16,384
+    Tamanho Alocado      : 16,384
+    Extensões:              4 Extensões
+Fluxo                  : 0x0b0  :$I30:$BITMAP
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 8
+    Tamanho Alocado      : 8
+
+
+=== cenÃ¡rio=distorcao N=10 repetiÃ§Ã£o=1 diretÃ³rio=dados/coleta_20261126_115344\destino_distorcao_10_r1 ===
+
+********* Arquivo 0x00340000000368bf *********
+Número de referência de arquivo   : 0x00340000000368bf
+Atributos de arquivo         : 0x00000010: Diretório
+Sinalizadores de entrada de arquivo        : 0x00000000
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome DOS     : DE25BB~1
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome NTFS    : \Users\gioce\Documents\Codex\2026-11-26\https-github-com-giovanicestari-projeto-de\outputs\dados\coleta_20261126_115344\destino_distorcao_10_r1
+Hora de Criação:            11/26/2026 14:58:59
+Hora do Último Acesso:         11/26/2026 14:59:05
+Hora da Última Gravação:          11/26/2026 14:59:05
+Hora da Alteração:              11/26/2026 14:59:05
+LastUsn:                  23,884,225,128
+OwnerId:                  0
+SecurityId:               16673
+StorageReserveId        : 0
+Fluxo                  : 0x010  ::$STANDARD_INFORMATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 72
+    Tamanho Alocado      : 72
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 82
+    Tamanho Alocado      : 88
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 112
+    Tamanho Alocado      : 112
+Fluxo                  : 0x090  :$I30:$INDEX_ROOT
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 56
+    Tamanho Alocado      : 56
+Fluxo                  : 0x0a0  :$I30:$INDEX_ALLOCATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x00000000: *NENHUM*
+    Tamanho                : 4,096
+    Tamanho Alocado      : 4,096
+    Extensões:              1 Extensões
+Fluxo                  : 0x0b0  :$I30:$BITMAP
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 8
+    Tamanho Alocado      : 8
+
+
+=== cenÃ¡rio=distorcao N=10 repetiÃ§Ã£o=2 diretÃ³rio=dados/coleta_20261126_115344\destino_distorcao_10_r2 ===
+
+********* Arquivo 0x001c000000043156 *********
+Número de referência de arquivo   : 0x001c000000043156
+Atributos de arquivo         : 0x00000010: Diretório
+Sinalizadores de entrada de arquivo        : 0x00000000
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome DOS     : DE4B4D~1
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome NTFS    : \Users\gioce\Documents\Codex\2026-11-26\https-github-com-giovanicestari-projeto-de\outputs\dados\coleta_20261126_115344\destino_distorcao_10_r2
+Hora de Criação:            11/26/2026 14:59:10
+Hora do Último Acesso:         11/26/2026 14:59:16
+Hora da Última Gravação:          11/26/2026 14:59:16
+Hora da Alteração:              11/26/2026 14:59:16
+LastUsn:                  23,884,360,024
+OwnerId:                  0
+SecurityId:               16673
+StorageReserveId        : 0
+Fluxo                  : 0x010  ::$STANDARD_INFORMATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 72
+    Tamanho Alocado      : 72
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 82
+    Tamanho Alocado      : 88
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 112
+    Tamanho Alocado      : 112
+Fluxo                  : 0x090  :$I30:$INDEX_ROOT
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 56
+    Tamanho Alocado      : 56
+Fluxo                  : 0x0a0  :$I30:$INDEX_ALLOCATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x00000000: *NENHUM*
+    Tamanho                : 4,096
+    Tamanho Alocado      : 4,096
+    Extensões:              1 Extensões
+Fluxo                  : 0x0b0  :$I30:$BITMAP
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 8
+    Tamanho Alocado      : 8
+
+
+=== cenÃ¡rio=distorcao N=10 repetiÃ§Ã£o=3 diretÃ³rio=dados/coleta_20261126_115344\destino_distorcao_10_r3 ===
+
+********* Arquivo 0x002d000000036a7d *********
+Número de referência de arquivo   : 0x002d000000036a7d
+Atributos de arquivo         : 0x00000010: Diretório
+Sinalizadores de entrada de arquivo        : 0x00000000
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome DOS     : DEF042~1
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome NTFS    : \Users\gioce\Documents\Codex\2026-11-26\https-github-com-giovanicestari-projeto-de\outputs\dados\coleta_20261126_115344\destino_distorcao_10_r3
+Hora de Criação:            11/26/2026 14:59:31
+Hora do Último Acesso:         11/26/2026 14:59:51
+Hora da Última Gravação:          11/26/2026 14:59:51
+Hora da Alteração:              11/26/2026 14:59:51
+LastUsn:                  23,884,534,536
+OwnerId:                  0
+SecurityId:               16673
+StorageReserveId        : 0
+Fluxo                  : 0x010  ::$STANDARD_INFORMATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 72
+    Tamanho Alocado      : 72
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 82
+    Tamanho Alocado      : 88
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 112
+    Tamanho Alocado      : 112
+Fluxo                  : 0x090  :$I30:$INDEX_ROOT
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 56
+    Tamanho Alocado      : 56
+Fluxo                  : 0x0a0  :$I30:$INDEX_ALLOCATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x00000000: *NENHUM*
+    Tamanho                : 4,096
+    Tamanho Alocado      : 4,096
+    Extensões:              1 Extensões
+Fluxo                  : 0x0b0  :$I30:$BITMAP
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 8
+    Tamanho Alocado      : 8
+
+
+=== cenÃ¡rio=distorcao N=50 repetiÃ§Ã£o=1 diretÃ³rio=dados/coleta_20261126_115344\destino_distorcao_50_r1 ===
+
+********* Arquivo 0x000f0000000431f7 *********
+Número de referência de arquivo   : 0x000f0000000431f7
+Atributos de arquivo         : 0x00000010: Diretório
+Sinalizadores de entrada de arquivo        : 0x00000000
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome DOS     : DEBF78~1
+Link (ParentID: Nome)   : 0x004b0000000015c4: Nome NTFS    : \Users\gioce\Documents\Codex\2026-11-26\https-github-com-giovanicestari-projeto-de\outputs\dados\coleta_20261126_115344\destino_distorcao_50_r1
+Hora de Criação:            11/26/2026 14:59:55
+Hora do Último Acesso:         11/26/2026 15:01:07
+Hora da Última Gravação:          11/26/2026 15:01:07
+Hora da Alteração:              11/26/2026 15:01:07
+LastUsn:                  23,886,121,928
+OwnerId:                  0
+SecurityId:               16673
+StorageReserveId        : 0
+Fluxo                  : 0x010  ::$STANDARD_INFORMATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 72
+    Tamanho Alocado      : 72
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 82
+    Tamanho Alocado      : 88
+Fluxo                  : 0x030  ::$FILE_NAME
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 112
+    Tamanho Alocado      : 112
+Fluxo                  : 0x090  :$I30:$INDEX_ROOT
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 416
+    Tamanho Alocado      : 416
+Fluxo                  : 0x0a0  :$I30:$INDEX_ALLOCATION
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x00000000: *NENHUM*
+    Tamanho                : 16,384
+    Tamanho Alocado      : 16,384
+    Extensões:              2 Extensões
+Fluxo                  : 0x0b0  :$I30:$BITMAP
+    Atributos          : 0x00000000: *NENHUM*
+    Sinalizadores               : 0x0000000c: Residente | Nenhum cluster alocado
+    Tamanho                : 8
+    Tamanho Alocado      : 8
+
+
