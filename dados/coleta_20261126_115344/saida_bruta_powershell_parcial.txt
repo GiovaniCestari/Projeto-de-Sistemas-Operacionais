@@ -1,0 +1,33 @@
+**********************
+Início da transcrição do Windows PowerShell
+Hora de início: 20261126115344
+Nome de Usuário: Windows 11 notebook
+Executar como Usuário: Windows 11 notebook
+Nome da Configuração: 
+Computador: Windows 11 notebook (Microsoft Windows NT 10.0.26200.0)
+Aplicativo Host: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoExit -ExecutionPolicy Bypass -File scripts/medir.ps1 -ComDistorcao
+ID do Processo: 11212
+PSVersion: 5.1.26100.9818
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9818
+BuildVersion: 10.0.26100.9818
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Coleta: 20261126_115344
+Windows: Microsoft Windows 11 Pro
+Dados preservados em: dados/coleta_20261126_115344
+Origem: um arquivo binÃ¡rio de 4 MiB por rodada via Cloudflare speed test
+Sistema de arquivos: NTFS
+CenÃ¡rio=limpo; N=10; rodada=1; tempo=0.7559133s; cÃ³pia=443.893 Mbps; temp=51
+CenÃ¡rio=limpo; N=10; rodada=2; tempo=30.0700338s; cÃ³pia=11.159 Mbps; temp=70
+CenÃ¡rio=limpo; N=10; rodada=3; tempo=4.3765445s; cÃ³pia=76.669 Mbps; temp=74
+CenÃ¡rio=limpo; N=50; rodada=1; tempo=19.170341s; cÃ³pia=87.517 Mbps; temp=66
+CenÃ¡rio=limpo; N=50; rodada=2; tempo=3.2499849s; cÃ³pia=516.224 Mbps; temp=67
+CenÃ¡rio=limpo; N=50; rodada=3; tempo=45.2616293s; cÃ³pia=37.067 Mbps; temp=50
+CenÃ¡rio=distorcao; N=10; rodada=1; tempo=0.9891814s; cÃ³pia=339.214 Mbps; temp=74
+CenÃ¡rio=distorcao; N=10; rodada=2; tempo=1.8636641s; cÃ³pia=180.045 Mbps; temp=73
+CenÃ¡rio=distorcao; N=10; rodada=3; tempo=0.4545382s; cÃ³pia=738.209 Mbps; temp=87
+
