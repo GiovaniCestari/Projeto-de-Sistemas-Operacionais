@@ -72,9 +72,9 @@ a { color: #155b83; text-decoration: none; }
   <table>
     <thead><tr><th>Fator</th><th>Procedimento</th><th>Estado</th></tr></thead>
     <tbody>
-      <tr><td>Quantidade</td><td>10 e 50 arquivos de 4 MiB; três repetições planejadas por cenário</td><td>10 limpo, 50 limpo e 10 distorcido completos</td></tr>
+      <tr><td>Quantidade</td><td>10 e 50 arquivos de 4 MiB; três repetições planejadas por cenário</td><td>10 limpo, 50 limpo e 10 distorcido completos; 3 novas rodadas distorcidas N=50</td></tr>
       <tr><td>Ambiente limpo</td><td>Cópia serial, sem carga artificial em segundo plano</td><td>6 rodadas completas</td></tr>
-      <tr><td>Distorção</td><td>Laço de CPU e gravações concorrentes de 1 MiB em disco</td><td>3 rodadas completas em N=10; N=50 interrompido</td></tr>
+      <tr><td>Distorção</td><td>Laço de CPU e gravações concorrentes de 1 MiB em disco</td><td>3 rodadas completas em N=10; mais 3 rodadas N=50 após resfriamento</td></tr>
       <tr><td>Blocos do diretório</td><td>Saída integral de <code>fsutil file layout</code>, incluindo <code>$I30:$INDEX_ALLOCATION</code></td><td>Consulta administrativa disponível</td></tr>
       <tr><td>Temperatura</td><td>Leitura manual no HWMonitor após cada rodada</td><td>9 valores nas primeiras rodadas; mais 3 leituras após as cópias N=50</td></tr>
       <tr><td>Download / bateria / CPU</td><td>Download de amostra; sensores WMI e process time no script</td><td>Ficha com 6 rodadas; separada da coleta complementar</td></tr>
@@ -200,7 +200,7 @@ a { color: #155b83; text-decoration: none; }
     <li>Microsoft Learn. <em>Win32_Battery class</em>. <a href="https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/win32-battery">Documentação Win32_Battery</a>.</li>
     <li>CPUID. <em>HWMonitor</em>. <a href="https://www.cpuid.com/softwares/hwmonitor.html">https://www.cpuid.com/softwares/hwmonitor.html</a>.</li>
   </ol>
-  <p>O relatório utiliza a ficha transcrita em <code>dados/primeira_medicao_bia.csv</code> e a coleta complementar em <code>dados/coleta_20261126_115344/</code>.</p>
+  <p>O relatório utiliza a ficha transcrita em <code>dados/primeira_medicao_bia.csv</code>, a coleta complementar em <code>dados/coleta_20261126_115344/</code> e as três rodadas N=50 em <code>dados/coleta_n50_distorcao_20261126/</code>.</p>
 </section>
 
 <section class="section">
@@ -208,7 +208,7 @@ a { color: #155b83; text-decoration: none; }
   <table>
     <thead><tr><th>IA auxiliou em</th><th>Grupo executou, mediu ou deve revisar</th></tr></thead>
     <tbody>
-      <tr><td>Organização do repositório e README; preparação e execução parcial do script; transcrição da ficha da integrante e extração de nove linhas completas da coleta complementar, cálculo e revisão de estatísticas; redação e formatação deste relatório parcial.</td><td>Execução no notebook, leituras de temperatura no HWMonitor e envio dos valores; revisão dos registros, hipóteses, interpretações e referências; validação de quais resultados representam o experimento do grupo.</td></tr>
+      <tr><td>Organização do repositório e README; preparação e execução parcial do script; transcrição da ficha da integrante e extração de nove linhas iniciais e três novas linhas N=50 da coleta complementar, cálculo e revisão de estatísticas; redação e formatação deste relatório parcial.</td><td>Execução no notebook, leituras de temperatura no HWMonitor e envio dos valores; revisão dos registros, hipóteses, interpretações e referências; validação de quais resultados representam o experimento do grupo.</td></tr>
     </tbody>
   </table>
   <p class="note"><strong>Transparência:</strong> este documento separa a primeira medição registrada na ficha da coleta complementar parcial. As três novas rodadas N=50 foram concluídas; a leitura de temperatura disponível é a pós-cópia, não o pico contínuo. Os autores devem revisar a transcrição e confirmar a procedência dos métodos antes da entrega.</p>
