@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medição do grupo – visão geral</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 28px 40px 48px; background: #fcfcfb; color: #0b0b0b;
+         font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; }
+  .projeto { font-size: 20px; color: #52514e; margin: 0 0 8px; }
+  h1 { font-size: 38px; line-height: 1.2; margin: 0 0 10px; max-width: 1250px; }
+  .sub { font-size: 22px; color: #52514e; margin: 0 0 6px; max-width: 1250px; }
+  .legend { display: flex; gap: 32px; font-size: 20px; color: #52514e; margin: 12px 0 0; align-items: center; flex-wrap: wrap; }
+  .legend span { display: inline-flex; align-items: center; gap: 10px; }
+  #grafico { width: 100%; max-width: 1280px; height: auto; display: block; overflow: visible; }
+  svg text { font-family: inherit; }
+  .tip { position: fixed; pointer-events: none; background: #0b0b0b; color: #fff; font-size: 18px;
+         padding: 8px 12px; border-radius: 6px; opacity: 0; white-space: nowrap; }
+  .warn { background: #fff4d6; border-left: 6px solid #c98a00; padding: 12px 16px; font-size: 20px; margin: 16px 0; }
+  h3 { font-size: 26px; margin: 36px 0 10px; }
+  table { border-collapse: collapse; font-size: 18px; }
+  th, td { border: 1px solid #d6d5d0; padding: 7px 12px; text-align: right; }
+  th { background: #f0efec; text-align: center; vertical-align: bottom; }
+  td:first-child { text-align: left; font-weight: 600; }
+  .nota { font-size: 17px; color: #52514e; margin-top: 10px; max-width: 1250px; }
+</style>
+</head>
+<body>
+
+<p class="projeto">Pergunta do grupo: quanto custa para o SO organizar músicas baixadas em um MP3? · Mecanismo: gerenciamento de arquivos e diretórios</p>
+<h1>De 10 para 50 músicas, os blocos de diretório subiram 400%; as outras métricas mudaram menos de 10%</h1>
+<p class="sub">Cada coluna mostra quanto a média de 3 rodadas mudou ao passar de 10 para 50 músicas (4 MB cada).</p>
+<div class="legend">
+  <span><svg width="22" height="30"><rect x="2" y="2" width="18" height="26" rx="4" fill="#2a78d6"/></svg> variação da média (%)</span>
+  <span><svg width="30" height="30"><line x1="15" y1="3" x2="15" y2="27" stroke="#8a8984" stroke-width="6" stroke-linecap="round"/></svg> variação entre as rodadas de 10 músicas</span>
+</div>
+<div id="avisos"></div>
+<svg id="grafico" viewBox="0 0 1280 600" role="img" aria-label="Variação percentual de cada métrica de 10 para 50 músicas"></svg>
+
+<h3>Números usados no gráfico</h3>
+<div id="tabela"></div>
+<p class="nota">Variação (%) = (média com 50 músicas − média com 10 músicas) ÷ média com 10 músicas × 100. O traço cinza vai da rodada mais baixa à mais alta com 10 músicas, em % da média com 10 músicas: se a coluna azul passa dele, a mudança é maior que a variação normal entre rodadas.</p>
+
+<div class="tip" id="tip"></div>
+
+<!-- Dados exatamente como enviados (CSV com ponto e vírgula e vírgula decimal) -->
+<script id="dados" type="text/plain">
+condicao;Velocidade de download (Mbps (Megabits por segundo));Quantidade de blocos de diretório alocados (Blocos);bateria (% por minuto);Temperatura da CPU (ou do aparelho MP3) durante a transferência via USB. (Graus Celsius);Variância da velocidade (MBPS^2)
+baixando 10 musica (4 MB cada);24,3;1;0,522;25;19,82
+baixando 10 musica (4 MB cada);29;1;0,560;28;19,82
+baixando 10 musica (4 MB cada);33,2;1;0,527;30;19,82
+baixando 50 musica (4 MB cada);31,4;5;0,530;28;1,39
+baixando 50 musica (4 MB cada);29,8;5;0,540;30;1,39
+baixando 50 musica (4 MB cada);29,1;5;0,581;33;1,39
+</script>
+
+<script>
+(function () {
+  var METRICAS = [
+    { col: 1, nome: ["Velocidade de", "download"], un: "Mbps", dec: 1 },
+    { col: 2, nome: ["Blocos de", "diretório"], un: "blocos", dec: 0 },
+    { col: 3, nome: ["Bateria"], un: "% por minuto", dec: 3 },
+    { col: 4, nome: ["Temperatura"], un: "°C", dec: 1 }
+  ];
+  var linhas = document.getElementById("dados").textContent.trim().split(/\r?\n/);
+  var cab = linhas[0].split(";");
+  var corpo = linhas.slice(1).map(function (l) { return l.split(";"); });
+  var avisos = [];
+  function num(t, i, c) {
+    t = (t || "").trim();
+    var v = t === "" ? NaN : Number(t.replace(/\./g, "").replace(",", "."));
+    if (!isFinite(v)) avisos.push('Linha ' + (i + 2) + ', coluna "' + cab[c] + '": "' + t + '" não é número e ficou de fora.');
+    return v;
+  }
+  function fmt(v, d) { return isFinite(v) ? v.toLocaleString("pt-BR", { minimumFractionDigits: d, maximumFractionDigits: d }) : "–"; }
+  function pct(v) { return (v > 0 ? "+" : v < 0 ? "−" : "") + fmt(Math.abs(v), 1) + "%"; }
+
+  var conds = [], porCond = {};
+  corpo.forEach(function (cel, i) { var c = cel[0].trim(); if (!porCond[c]) { porCond[c] = []; conds.push(c); } porCond[c].push({ i: i, cel: cel }); });
+  var c10 = conds[0], c50 = conds[1];
+
+  var res = METRICAS.map(function (m) {
+    function vals(c) { return porCond[c].map(function (r) { return num(r.cel[m.col], r.i, m.col); }).filter(isFinite); }
+    var a = vals(c10), b = vals(c50);
+    var ma = a.reduce(function (s, v) { return s + v; }, 0) / a.length;
+    var mb = b.reduce(function (s, v) { return s + v; }, 0) / b.length;
+    return { m: m, a: a, b: b, ma: ma, mb: mb,
+      varPct: (mb - ma) / ma * 100,
+      lo: (Math.min.apply(null, a) - ma) / ma * 100,
+      hi: (Math.max.apply(null, a) - ma) / ma * 100 };
+  });
+
+  // Desenho
+  var NS = "http://www.w3.org/2000/svg", svg = document.getElementById("grafico");
+  function el(tag, at) { var e = document.createElementNS(NS, tag); for (var k in at) e.setAttribute(k, at[k]); svg.appendChild(e); return e; }
+  var W = 1280, H = 600, L = 120, R = 30, T = 40, B = 110, pw = W - L - R, ph = H - T - B;
+  var ymin = -50, ymax = 450;
+  var y = function (v) { return T + ph - (v - ymin) / (ymax - ymin) * ph; };
+  for (var t = ymin; t <= ymax; t += 50) {
+    el("line", { x1: L, x2: W - R, y1: y(t), y2: y(t), stroke: t === 0 ? "#52514e" : "#e4e3df", "stroke-width": t === 0 ? 2.5 : 1 });
+    var tx = el("text", { x: L - 14, y: y(t) + 7, "text-anchor": "end", "font-size": 19, fill: "#52514e" });
+    tx.textContent = (t > 0 ? "+" : t < 0 ? "−" : "") + Math.abs(t) + "%";
+  }
+  var ty = el("text", { x: -(T + ph / 2), y: 28, transform: "rotate(-90)", "text-anchor": "middle", "font-size": 20 });
+  ty.textContent = "Variação da média, de 10 para 50 músicas (%)";
+
+  var tip = document.getElementById("tip");
+  function hover(alvo, txt) {
+    alvo.addEventListener("mousemove", function (e) { tip.textContent = txt; tip.style.opacity = 1; tip.style.left = (e.clientX + 16) + "px"; tip.style.top = (e.clientY - 40) + "px"; });
+    alvo.addEventListener("mouseleave", function () { tip.style.opacity = 0; });
+  }
+
+  var slot = pw / res.length, bw = 130;
+  res.forEach(function (r, i) {
+    var cx = L + slot * (i + 0.5), x0 = cx - bw / 2;
+    var y0 = y(0), y1 = y(r.varPct), top = Math.min(y0, y1), h = Math.max(Math.abs(y1 - y0), 1), rr = Math.min(4, h);
+    var pos = r.varPct >= 0;
+    var d = pos
+      ? "M" + x0 + "," + y0 + " V" + (top + rr) + " Q" + x0 + "," + top + " " + (x0 + rr) + "," + top + " H" + (x0 + bw - rr) + " Q" + (x0 + bw) + "," + top + " " + (x0 + bw) + "," + (top + rr) + " V" + y0 + " Z"
+      : "M" + x0 + "," + y0 + " V" + (y1 - rr) + " Q" + x0 + "," + y1 + " " + (x0 + rr) + "," + y1 + " H" + (x0 + bw - rr) + " Q" + (x0 + bw) + "," + y1 + " " + (x0 + bw) + "," + (y1 - rr) + " V" + y0 + " Z";
+    el("path", { d: d, fill: "#2a78d6" });
+    // referência: variação entre as rodadas de 10 músicas
+    var wx = cx + bw / 2 + 22;
+    var ref = el("line", { x1: wx, x2: wx, y1: y(r.hi), y2: y(r.lo), stroke: "#8a8984", "stroke-width": 6, "stroke-linecap": "round" });
+    hover(ref, "Rodadas com 10 músicas: de " + pct(r.lo) + " a " + pct(r.hi) + " da média");
+    var hit = el("rect", { x: x0, y: Math.min(top, y(r.hi)) - 10, width: bw, height: Math.max(h, 20) + 20, fill: "transparent" });
+    hover(hit, r.m.nome.join(" ") + ": " + fmt(r.ma, r.m.dec) + " → " + fmt(r.mb, r.m.dec) + " " + r.m.un + " (" + pct(r.varPct) + ")");
+    var lab = el("text", { x: cx, y: Math.min(y1, y(r.hi)) - 14, "text-anchor": "middle", "font-size": 28, "font-weight": 700 });
+    lab.textContent = pct(r.varPct);
+    var sub = el("text", { x: cx, y: Math.min(y1, y(r.hi)) - 48, "text-anchor": "middle", "font-size": 18, fill: "#52514e" });
+    sub.textContent = fmt(r.ma, r.m.dec) + " → " + fmt(r.mb, r.m.dec) + " " + r.m.un;
+    r.m.nome.forEach(function (n, k) {
+      var t2 = el("text", { x: cx, y: y(ymin) + 34 + k * 26, "text-anchor": "middle", "font-size": 22, "font-weight": 600 });
+      t2.textContent = n;
+    });
+  });
+
+  // Tabela
+  var h = "<table><thead><tr><th>Métrica</th><th>Rodadas com 10 músicas</th><th>Média 10</th><th>Rodadas com 50 músicas</th><th>Média 50</th><th>Variação da média</th><th>Variação entre rodadas de 10 (% da média)</th></tr></thead><tbody>";
+  res.forEach(function (r) {
+    var d = r.m.dec;
+    h += "<tr><td>" + r.m.nome.join(" ") + " (" + r.m.un + ")</td><td>" +
+      porCond[c10].map(function (x) { return x.cel[r.m.col].trim(); }).join(" / ") + "</td><td>" + fmt(r.ma, d + 1) + "</td><td>" +
+      porCond[c50].map(function (x) { return x.cel[r.m.col].trim(); }).join(" / ") + "</td><td>" + fmt(r.mb, d + 1) + "</td><td>" +
+      pct(r.varPct) + "</td><td>" + pct(r.lo) + " a " + pct(r.hi) + "</td></tr>";
+  });
+  h += "</tbody></table>";
+  document.getElementById("tabela").innerHTML = h;
+  if (avisos.length) document.getElementById("avisos").innerHTML = '<div class="warn"><b>Atenção:</b><br>' + avisos.join("<br>") + "</div>";
+})();
+</script>
+</body>
+</html>
+
